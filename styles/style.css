@@ -1,0 +1,119 @@
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  24%,
+  55% {
+    opacity: 0.9;
+  }
+}
+
+body {
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+  font-family: "Segoe UI", sans-serif;
+  /* text-shadow: 0 0 1px #badaff, 0 0 2px #bddcff; */
+  animation: flicker 0.15s infinite;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 3px
+  );
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+nav.navbar {
+  background-color: #121212;
+}
+
+.navbar-brand {
+  font-family: "Electrolize";
+  font-weight: bold;
+  color: #134d52;
+}
+
+.navbar-nav .nav-link {
+  color: #f0f0f0;
+}
+
+.hero {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #000000, #00093b);
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: "Rubik Glitch";
+  font-size: 6rem;
+  color: #2e706d;
+}
+
+.hero p {
+  color: #bbb;
+  font-family: "Jura";
+}
+
+.portfolio-section {
+  padding: 60px 20px;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border: none;
+}
+
+.card-title {
+  font-family: "Electrolize";
+  color: #2e706d;
+}
+
+.card-body p {
+  font-family: "Jura";
+  color: #6e6e6e;
+}
+
+.featured-text {
+  font-family: "Electrolize";
+}
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  background-color: #121212;
+  color: #777;
+}
+
+a:hover {
+  color: #2e706d !important;
+}
+
+audio {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.wyze-logo:hover {
+  transform: scale(1.5);
+}

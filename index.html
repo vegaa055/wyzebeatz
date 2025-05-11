@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Wyze Beatz" />
+    <meta name="og:image" content="wyze-logo.html" />
+    <meta property="og:url" content="https://www.wyzebeatz.com" />
+    <meta
+      property="og:description"
+      content="Sonic explorations through Hip-Hop, Synthwave, and Experimental soundscapes"
+    />
+    <title>Wyze Beatz</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comforter&family=Rubik+Glitch&family=Comforter+Brush&amp;family=Electrolize&amp;family=Jura:wght@300..700&amp;family=Zen+Loop:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const audioPlayers = document.querySelectorAll("audio");
+        audioPlayers.forEach((player) => {
+          player.addEventListener("play", () => {
+            audioPlayers.forEach((otherPlayer) => {
+              if (otherPlayer !== player) {
+                otherPlayer.pause();
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <img
+          src="images/wyze_logo01.png "
+          width="80"
+          height="80"
+          class="me-2 p-2 d-inline-block align-text-top wyze-logo"
+          alt=""
+        />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Wyze Beatz</h1>
+        <p>
+          Sonic explorations through Hip-Hop, Synthwave, and Experimental
+          soundscapes
+        </p>
+      </div>
+    </section>
+
+    <div class="share-content mx-auto d-flex justify-content-end">
+      <!-- AddToAny BEGIN -->
+      <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_email"></a>
+        <a class="a2a_button_threads"></a>
+        <a class="a2a_button_facebook_messenger"></a>
+      </div>
+      <script defer src="https://static.addtoany.com/menu/page.js"></script>
+      <!-- AddToAny END -->
+    </div>
+
+    <section id="portfolio" class="portfolio-section">
+      <div class="container">
+        <h2 class="text-center mb-5 featured-text">Featured Tracks</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="card h-100 text-center">
+              <div class="card-body">
+                <h5 class="card-title">Never_Stop</h5>
+                <p class="card-text">Motivational Hip-Hop Instrumental</p>
+                <div class="music-player">
+                  <audio controls>
+                    <source src="audio/never_stop.mp3" type="audio/ogg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center">
+              <div class="card-body">
+                <h5 class="card-title">The Journey</h5>
+                <p class="card-text">Introspective Hip-Hop Instrumental</p>
+                <div class="music-player">
+                  <audio controls>
+                    <source src="audio/the_journey.mp3" type="audio/ogg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center">
+              <div class="card-body">
+                <h5 class="card-title">Neverending_Story [Vega2020_Remix]</h5>
+                <p class="card-text">Synthwave remix of a classic</p>
+                <!-- <a href="#" class="btn btn-outline-light btn-sm">Listen</a> -->
+                <div class="music-player">
+                  <audio controls>
+                    <source
+                      src="audio/neverending_story_vega_REMIX.mp3"
+                      type="audio/ogg"
+                    />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Add more cards as needed -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="portfolio-section bg-dark">
+      <div class="container text-center">
+        <h2 class="mb-4">About Wyze Beatz</h2>
+        <p>
+          Wyze Beatz is a music production project based in Sierra Vista, AZ,
+          combining desert vibes with futuristic sound design. From boom-bap
+          drums to neon-soaked synthscapes, each track is a sonic experiment
+          meant to move the mind and body.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="portfolio-section">
+      <div class="container text-center">
+        <h2 class="mb-4">Get In Touch</h2>
+        <p>
+          Email:
+          <a href="mailto:wyzebeatz@example.com">wyzebeatz@example.com</a>
+        </p>
+        <p>Instagram: <a href="#">@wyzebeatz</a></p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>© 2025 Wyze Beatz. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
