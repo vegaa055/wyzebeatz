@@ -117,3 +117,12 @@ audio {
 .wyze-logo:hover {
   transform: scale(1.5);
 }
+
+#about {
+  font-family: "Electrolize";
+  text-shadow: 2px 2px 3px rgb(22, 22, 22);
+}
+
+#contact {
+  font-family: "Electrolize";
+}
