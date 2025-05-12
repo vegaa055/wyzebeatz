@@ -113,46 +113,48 @@
               <div class="card-body">
                 <h5 class="card-title">Never_Stop</h5>
                 <p class="card-text">Motivational Hip-Hop Instrumental</p>
-                <div class="music-player">
-                  <audio controls>
-                    <source src="audio/never_stop.mp3" type="audio/mp3" />
-                    Your browser does not support the audio element.
-                  </audio>
+                <div class="text-center mt-3">
+                  <div id="waveform_never-stop"></div>
+                  <button id="play-btn" class="btn btn-outline-light mt-3">
+                    Play / Pause
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="col">
             <div class="card h-100 text-center">
               <div class="card-body">
-                <h5 class="card-title">The_Journey</h5>
-                <p class="card-text">Introspective Hip-Hop Instrumental</p>
-                <div class="music-player">
-                  <audio controls>
-                    <source src="audio/the_journey.mp3" type="audio/mp3" />
-                    Your browser does not support the audio element.
-                  </audio>
+                <h5 class="card-title">The Journey</h5>
+                <p class="card-text">Instrospective Hip-Hop Instrumental</p>
+                <div class="text-center mt-3">
+                  <div id="waveform_the-journey"></div>
+                  <button id="play-btn2" class="btn btn-outline-light mt-3">
+                    Play / Pause
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="col">
             <div class="card h-100 text-center">
               <div class="card-body">
-                <h5 class="card-title">Neverending_Story [Vega2020_Remix]</h5>
-                <p class="card-text">Synthwave remix of a classic</p>
-                <div class="music-player">
-                  <audio controls>
-                    <source
-                      src="audio/neverending_story_vega_REMIX.mp3"
-                      type="audio/mp3"
-                    />
-                    Your browser does not support the audio element.
-                  </audio>
+                <h5 class="card-title">Neverending_Story[Vega2020_Remix]</h5>
+                <p class="card-text">
+                  Synthwave inspired remix of an 80's classic
+                </p>
+                <div class="text-center mt-3">
+                  <div id="waveform_neverending-story"></div>
+                  <button id="play-btn3" class="btn btn-outline-light mt-3">
+                    Play / Pause
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+
           <!-- Add more cards as needed -->
         </div>
       </div>
@@ -210,9 +212,10 @@
         <p>© 2025 Wyze Beatz. All Rights Reserved.</p>
       </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    a a
+    <script src="https://cdn.jsdelivr.neat/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      a;
       const canvas = document.getElementById("tv-static-canvas");
       const ctx = canvas.getContext("2d");
 
@@ -244,6 +247,44 @@
       }
 
       loop();
+    </script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script>
+      const players = [];
+
+      function createPlayer(containerId, buttonId, audioFile) {
+        const wavesurfer = WaveSurfer.create({
+          container: containerId,
+          waveColor: "#3aa39e",
+          progressColor: "#216360",
+          barWidth: 2,
+          height: 60,
+          responsive: true,
+        });
+
+        wavesurfer.load(audioFile);
+        players.push(wavesurfer);
+
+        document.getElementById(buttonId).addEventListener("click", () => {
+          // Pause all other players
+          players.forEach((player) => {
+            if (player !== wavesurfer) player.pause();
+          });
+          wavesurfer.playPause();
+        });
+      }
+
+      createPlayer("#waveform_never-stop", "play-btn", "audio/never_stop.mp3");
+      createPlayer(
+        "#waveform_the-journey",
+        "play-btn2",
+        "audio/the_journey.mp3"
+      );
+      createPlayer(
+        "#waveform_neverending-story",
+        "play-btn3",
+        "audio/neverending_story_vega_REMIX.mp3"
+      );
     </script>
   </body>
 </html>
