@@ -60,8 +60,14 @@ nav.navbar {
 
 .hero {
   padding: 100px 20px;
-  background: linear-gradient(135deg, #000000, #00093b);
+  background: linear-gradient(135deg, #000000, #363636);
   text-align: center;
+  position: relative;
+  height: 30vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero h1 {
@@ -74,7 +80,16 @@ nav.navbar {
   color: #bbb;
   font-family: "Jura";
 }
-
+#tv-static-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.08; /* subtle overlay */
+}
 .portfolio-section {
   padding: 60px 20px;
 }
@@ -127,14 +142,12 @@ audio {
   font-family: "Electrolize";
 }
 
-.email-add{
+.email-add {
   color: #134d52;
 }
 
 .fa {
   width: 50px;
-  color: #134d52; 
+  color: #134d52;
   padding-bottom: 2em;
 }
-
-
