@@ -56,6 +56,7 @@ nav.navbar {
 
 .navbar-nav .nav-link {
   color: #f0f0f0;
+  font-size: 1.4rem;
 }
 
 .hero {
@@ -123,12 +124,20 @@ footer {
 }
 
 a:hover {
-  color: #3aa39e !important;
+  color: #34b8b1 !important;
 }
 
 audio {
   width: 100%;
   margin-top: 0.5rem;
+}
+
+.wyze-logo {
+  box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.35);
+  -o-box-shadow: -3px 3px 5 pxrgba(0, 0, 0, 0.35);
+  border-radius: 50%;
 }
 
 .wyze-logo:hover {
