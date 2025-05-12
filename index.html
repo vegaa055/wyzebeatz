@@ -44,6 +44,7 @@
   </head>
 
   <body>
+    <!-- <canvas id="starfield"></canvas> -->
     <nav class="navbar navbar-expand-lg">
       <div class="container p-2">
         <img
@@ -126,7 +127,7 @@
           <div class="col">
             <div class="card h-100 text-center">
               <div class="card-body">
-                <h5 class="card-title">The Journey</h5>
+                <h5 class="card-title">The_Journey</h5>
                 <p class="card-text">Instrospective Hip-Hop Instrumental</p>
                 <div class="text-center mt-3">
                   <div id="waveform_the-journey"></div>
@@ -141,7 +142,7 @@
           <div class="col">
             <div class="card h-100 text-center">
               <div class="card-body">
-                <h5 class="card-title">Neverending_Story[Vega2020_Remix]</h5>
+                <h5 class="card-title">Neverending_Story [Vega2020_Remix]</h5>
                 <p class="card-text">
                   Synthwave inspired remix of an 80's classic
                 </p>
@@ -247,6 +248,7 @@
 
       loop();
     </script>
+
     <script src="https://unpkg.com/wavesurfer.js"></script>
     <script>
       const players = [];
@@ -285,5 +287,66 @@
         "audio/neverending_story_vega_REMIX.mp3"
       );
     </script>
+
+    <!-- <script>
+      const canvas1 = document.getElementById("starfield");
+      const ctx1 = canvas1.getContext("2d");
+
+      let width, height;
+      let stars = [];
+      const numStars = 350;
+      let mouseX = 0,
+        mouseY = 0;
+
+      function resize() {
+        width = canvas1.width = window.innerWidth;
+        height = canvas1.height = window.innerHeight;
+      }
+
+      function createStars() {
+        stars = [];
+        for (let i = 0; i < numStars; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            z: Math.random() * 1.5 + 0.5, // parallax depth
+            radius: Math.random() * 1.5 + 0.5,
+            opacity: Math.random() * 0.8 + 0.2,
+          });
+        }
+      }
+
+      function drawStars() {
+        ctx1.clearRect(0, 0, width, height);
+        for (let s of stars) {
+          const offsetX = (mouseX - width / 2) * s.z * 0.02;
+          const offsetY = (mouseY - height / 2) * s.z * 0.02;
+
+          ctx1.beginPath();
+          ctx1.arc(s.x + offsetX, s.y + offsetY, s.radius, 0, Math.PI * 2);
+          ctx1.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+          ctx1.fill();
+        }
+      }
+
+      function animate() {
+        drawStars();
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener("resize", () => {
+        resize();
+        createStars();
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      resize();
+      createStars();
+      animate();
+    </script> -->
   </body>
 </html>
