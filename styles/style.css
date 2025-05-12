@@ -72,6 +72,8 @@ nav.navbar {
 
 .hero h1 {
   font-family: "Rubik Glitch";
+  text-shadow: 0 0 1px rgba(46, 112, 109, 0.75),
+    0 0 2px rgba(71, 173, 168, 0.75);
   font-size: 6rem;
   color: #2e706d;
 }
@@ -80,6 +82,7 @@ nav.navbar {
   color: #bbb;
   font-family: "Jura";
 }
+
 #tv-static-canvas {
   position: absolute;
   top: 0;
@@ -101,6 +104,8 @@ nav.navbar {
 
 .card-title {
   font-family: "Electrolize";
+  text-shadow: 0 0 1px rgba(46, 112, 109, 0.75),
+    0 0 2px rgba(71, 173, 168, 0.75);
   color: #2e706d;
 }
 
@@ -144,11 +149,13 @@ audio {
 
 .email-add {
   color: #134d52;
+  text-shadow: 0 0 1px rgba(46, 112, 109, 0.5), 0 0 2px rgba(71, 173, 168, 0.5);
 }
 
 .fa {
   width: 50px;
   color: #134d52;
+  text-shadow: 0 0 1px rgba(46, 112, 109, 0.5), 0 0 2px rgba(71, 173, 168, 0.5);
   padding-bottom: 2em;
 }
 
