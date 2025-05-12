@@ -166,6 +166,24 @@ audio {
   padding-bottom: 2em;
 }
 
+#play-btn:hover {
+  color: #3aa39e;
+  background-color: #0a2629;
+  border-color: #62c7c2;
+}
+
+#play-btn2:hover {
+  color: #3aa39e;
+  background-color: #0a2629;
+  border-color: #62c7c2;
+}
+
+#play-btn3:hover {
+  color: #3aa39e;
+  background-color: #0a2629;
+  border-color: #62c7c2;
+}
+
 @media (max-width: 992px) {
   .hero h1 {
     font-size: 5.5rem;
