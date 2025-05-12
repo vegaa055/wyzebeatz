@@ -59,11 +59,11 @@ nav.navbar {
 }
 
 .hero {
-  padding: 100px 20px;
+  padding: 100px 0px;
   background: linear-gradient(135deg, #000000, #363636);
   text-align: center;
   position: relative;
-  height: 35vh;
+  height: 30vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -150,4 +150,22 @@ audio {
   width: 50px;
   color: #134d52;
   padding-bottom: 2em;
+}
+
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 3.75rem;
+  }
 }
