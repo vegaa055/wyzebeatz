@@ -28,24 +28,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const audioPlayers = document.querySelectorAll("audio");
-        audioPlayers.forEach((player) => {
-          player.addEventListener("play", () => {
-            audioPlayers.forEach((otherPlayer) => {
-              if (otherPlayer !== player) {
-                otherPlayer.pause();
-              }
-            });
-          });
-        });
-      });
-    </script> -->
   </head>
 
   <body>
-    <!-- <canvas id="starfield"></canvas> -->
     <nav class="navbar navbar-expand-lg">
       <div class="container p-2">
         <img
@@ -288,66 +273,5 @@
         "audio/neverending_story_vega_REMIX.mp3"
       );
     </script>
-
-    <!-- <script>
-      const canvas1 = document.getElementById("starfield");
-      const ctx1 = canvas1.getContext("2d");
-
-      let width, height;
-      let stars = [];
-      const numStars = 350;
-      let mouseX = 0,
-        mouseY = 0;
-
-      function resize() {
-        width = canvas1.width = window.innerWidth;
-        height = canvas1.height = window.innerHeight;
-      }
-
-      function createStars() {
-        stars = [];
-        for (let i = 0; i < numStars; i++) {
-          stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            z: Math.random() * 1.5 + 0.5, // parallax depth
-            radius: Math.random() * 1.5 + 0.5,
-            opacity: Math.random() * 0.8 + 0.2,
-          });
-        }
-      }
-
-      function drawStars() {
-        ctx1.clearRect(0, 0, width, height);
-        for (let s of stars) {
-          const offsetX = (mouseX - width / 2) * s.z * 0.02;
-          const offsetY = (mouseY - height / 2) * s.z * 0.02;
-
-          ctx1.beginPath();
-          ctx1.arc(s.x + offsetX, s.y + offsetY, s.radius, 0, Math.PI * 2);
-          ctx1.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
-          ctx1.fill();
-        }
-      }
-
-      function animate() {
-        drawStars();
-        requestAnimationFrame(animate);
-      }
-
-      window.addEventListener("resize", () => {
-        resize();
-        createStars();
-      });
-
-      window.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
-
-      resize();
-      createStars();
-      animate();
-    </script> -->
   </body>
 </html>
