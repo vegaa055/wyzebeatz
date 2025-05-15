@@ -59,6 +59,10 @@ nav.navbar {
   font-size: 1.4rem;
 }
 
+.navbar-nav .nav-link.active {
+  color: #3aa39e;
+}
+
 .hero {
   padding: 100px 0px;
   background: linear-gradient(135deg, #000000, #363636);
@@ -166,6 +170,7 @@ audio {
   padding-bottom: 2em;
 }
 
+/* Change these to have single play-btn with different id for each  */
 #play-btn:hover {
   color: #3aa39e;
   background-color: #0a2629;
@@ -182,6 +187,80 @@ audio {
   color: #3aa39e;
   background-color: #0a2629;
   border-color: #62c7c2;
+}
+
+.playlist {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.track-card {
+  background: #1b1b1b;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.track-title {
+  font-size: 1.25rem;
+  color: #00ffc3;
+}
+
+.track-card {
+  background: #1b1b1b;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.track-title {
+  font-size: 1.25rem;
+  color: #00ffc3;
+}
+
+.btn-play {
+  background: none;
+  border: 1px solid #3aa39e;
+  color: #00ffc3;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-play:hover {
+  background-color: #3aa39e;
+  color: #0f0f0f;
+}
+
+#waveform-container > div {
+  margin-bottom: 15px;
+}
+
+#waveform_never-stop {
+  margin-bottom: 15px;
+}
+
+#waveform_the-journey {
+  margin-bottom: 15px;
+}
+
+#waveform_neverending-story {
+  margin-bottom: 15px;
 }
 
 @media (max-width: 992px) {

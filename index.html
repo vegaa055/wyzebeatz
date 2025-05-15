@@ -54,13 +54,16 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Portfolio</a>
+              <a class="nav-link active" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="library.html">Library</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
             </li>
           </ul>
         </div>
@@ -102,9 +105,7 @@
                 <p class="card-text">Motivational Hip-Hop Instrumental</p>
                 <div class="text-center mt-3">
                   <div id="waveform_never-stop"></div>
-                  <button id="play-btn" class="btn btn-outline-light mt-3">
-                    Play / Pause
-                  </button>
+                  <button class="btn-play" data-id="0">Play / Pause</button>
                 </div>
               </div>
             </div>
@@ -117,9 +118,7 @@
                 <p class="card-text">Instrospective Hip-Hop Instrumental</p>
                 <div class="text-center mt-3">
                   <div id="waveform_the-journey"></div>
-                  <button id="play-btn2" class="btn btn-outline-light mt-3">
-                    Play / Pause
-                  </button>
+                  <button class="btn-play" data-id="1">Play / Pause</button>
                 </div>
               </div>
             </div>
@@ -134,9 +133,7 @@
                 </p>
                 <div class="text-center mt-3">
                   <div id="waveform_neverending-story"></div>
-                  <button id="play-btn3" class="btn btn-outline-light mt-3">
-                    Play / Pause
-                  </button>
+                  <button class="btn-play" data-id="2">Play / Pause</button>
                 </div>
               </div>
             </div>
@@ -201,77 +198,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      const canvas = document.getElementById("tv-static-canvas");
-      const ctx = canvas.getContext("2d");
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-
-      window.addEventListener("resize", resizeCanvas);
-      resizeCanvas();
-
-      function drawStatic() {
-        const imageData = ctx.createImageData(canvas.width, canvas.height);
-        const buffer = new Uint32Array(imageData.data.buffer);
-        const len = buffer.length;
-
-        for (let i = 0; i < len; i++) {
-          const gray = Math.random() * 255;
-          const alpha = 255;
-          buffer[i] = (alpha << 24) | (gray << 16) | (gray << 8) | gray;
-        }
-
-        ctx.putImageData(imageData, 0, 0);
-      }
-
-      function loop() {
-        drawStatic();
-        requestAnimationFrame(loop);
-      }
-
-      loop();
-    </script>
-
     <script src="https://unpkg.com/wavesurfer.js"></script>
-    <script>
-      const players = [];
-
-      function createPlayer(containerId, buttonId, audioFile) {
-        const wavesurfer = WaveSurfer.create({
-          container: containerId,
-          waveColor: "#3aa39e",
-          progressColor: "#216360",
-          barWidth: 2,
-          height: 60,
-          responsive: true,
-        });
-
-        wavesurfer.load(audioFile);
-        players.push(wavesurfer);
-
-        document.getElementById(buttonId).addEventListener("click", () => {
-          // Pause all other players
-          players.forEach((player) => {
-            if (player !== wavesurfer) player.pause();
-          });
-          wavesurfer.playPause();
-        });
-      }
-
-      createPlayer("#waveform_never-stop", "play-btn", "audio/never_stop.mp3");
-      createPlayer(
-        "#waveform_the-journey",
-        "play-btn2",
-        "audio/the_journey.mp3"
-      );
-      createPlayer(
-        "#waveform_neverending-story",
-        "play-btn3",
-        "audio/neverending_story_vega_REMIX.mp3"
-      );
-    </script>
+    <script src="/scripts/featured_tracks.js"></script>
+    <script src="/scripts/tv_static.js"></script>
   </body>
 </html>
