@@ -231,7 +231,7 @@ audio {
 #waveform-container > div {
   margin-bottom: 15px;
 }
-
+/* Featured Tracks Begin */
 #waveform_never-stop {
   margin-bottom: 15px;
 }
@@ -243,6 +243,7 @@ audio {
 #waveform_neverending-story {
   margin-bottom: 15px;
 }
+/* Featured Tracks End */
 
 @media (max-width: 992px) {
   .hero h1 {
