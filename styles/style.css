@@ -170,25 +170,6 @@ audio {
   padding-bottom: 2em;
 }
 
-/* Change these to have single play-btn with different id for each  */
-#play-btn:hover {
-  color: #3aa39e;
-  background-color: #0a2629;
-  border-color: #62c7c2;
-}
-
-#play-btn2:hover {
-  color: #3aa39e;
-  background-color: #0a2629;
-  border-color: #62c7c2;
-}
-
-#play-btn3:hover {
-  color: #3aa39e;
-  background-color: #0a2629;
-  border-color: #62c7c2;
-}
-
 .playlist {
   max-width: 800px;
   margin: auto;
@@ -244,7 +225,7 @@ audio {
 
 .btn-play:hover {
   background-color: #3aa39e;
-  color: #0f0f0f;
+  color: #ffffff;
 }
 
 #waveform-container > div {
