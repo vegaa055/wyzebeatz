@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script src="https://unpkg.com/wavesurfer.js"></script>;
 const canvas = document.getElementById("tv-static-canvas");
 const ctx = canvas.getContext("2d");
@@ -36,6 +37,23 @@ const players = [];
 function createPlayer(containerId, buttonId, audioFile) {
   const wavesurfer = WaveSurfer.create({
     container: containerId,
+=======
+const audioFiles = [
+  { id: "waveform_never-stop", src: "audio/never_stop.mp3" },
+  { id: "waveform_the-journey", src: "audio/the_journey.mp3" },
+  {
+    id: "waveform_neverending-story",
+    src: "audio/neverending_story_vega_REMIX.mp3",
+  },
+];
+
+const players = [];
+
+// Initialize players
+audioFiles.forEach((track, index) => {
+  const wavesurfer = WaveSurfer.create({
+    container: `#${track.id}`,
+>>>>>>> 32fd947d22a74474a7a9cccfa42ee535a2377352
     waveColor: "#3aa39e",
     progressColor: "#216360",
     barWidth: 2,
@@ -43,6 +61,7 @@ function createPlayer(containerId, buttonId, audioFile) {
     responsive: true,
   });
 
+<<<<<<< HEAD
   wavesurfer.load(audioFile);
   players.push(wavesurfer);
 
@@ -62,3 +81,21 @@ createPlayer(
   "play-btn3",
   "audio/neverending_story_vega_REMIX.mp3"
 );
+=======
+  wavesurfer.load(track.src);
+  players.push(wavesurfer);
+});
+
+// Bind play/pause logic
+document.querySelectorAll(".btn-play").forEach((button) => {
+  button.addEventListener("click", () => {
+    const id = parseInt(button.dataset.id);
+
+    players.forEach((wf, i) => {
+      if (i !== id) wf.pause();
+    });
+
+    players[id].playPause();
+  });
+});
+>>>>>>> 32fd947d22a74474a7a9cccfa42ee535a2377352
