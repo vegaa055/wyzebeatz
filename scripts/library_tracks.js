@@ -14,7 +14,9 @@ const audioFiles = [
 ];
 
 const waveforms = [];
+const buttons = [];
 
+// Init players
 audioFiles.forEach((track, index) => {
   const ws = WaveSurfer.create({
     container: `#${track.id}`,
@@ -29,15 +31,28 @@ audioFiles.forEach((track, index) => {
   waveforms.push(ws);
 });
 
-document.querySelectorAll(".btn-play").forEach((button) => {
-  button.addEventListener("click", () => {
-    const id = parseInt(button.dataset.id);
+// Bind play/pause buttons
+document.querySelectorAll(".btn-play").forEach((button, index) => {
+  const icon = button.querySelector("i");
+  buttons.push({ button, icon });
 
-    // Pause all others
+  button.addEventListener("click", () => {
     waveforms.forEach((wf, i) => {
-      if (i !== id) wf.pause();
+      if (i !== index) {
+        wf.pause();
+        buttons[i].icon.classList.remove("fa-pause");
+        buttons[i].icon.classList.add("fa-play");
+      }
     });
 
-    waveforms[id].playPause();
+    if (waveforms[index].isPlaying()) {
+      waveforms[index].pause();
+      icon.classList.remove("fa-pause");
+      icon.classList.add("fa-play");
+    } else {
+      waveforms[index].play();
+      icon.classList.remove("fa-play");
+      icon.classList.add("fa-pause");
+    }
   });
 });
