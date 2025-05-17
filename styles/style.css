@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #f0f0f0;
+  --primary-background-color: #0f0f0f;
+  --secondary-color: #00337c;
+  --secondary-background-color: #121212;
+  --highlight-color: #03b2c9;
+  --secondary-highlight-color: #1c82ad;
+  --border-radius: 1rem;
+}
+
 @keyframes flicker {
   0%,
   19%,
@@ -18,8 +28,8 @@
 }
 
 body {
-  background-color: #0f0f0f;
-  color: #f0f0f0;
+  background-color: var(--primary-background-color);
+  color: var(--primary-color);
   font-family: "Segoe UI", sans-serif;
   /* text-shadow: 0 0 1px #badaff, 0 0 2px #bddcff; */
   animation: flicker 0.15s infinite;
@@ -45,22 +55,22 @@ body::before {
 }
 
 nav.navbar {
-  background-color: #121212;
+  background-color: --;
 }
 
 .navbar-brand {
   font-family: "Electrolize";
   font-weight: bold;
-  color: #134d52;
+  color: var(--secondary-highlight-color);
 }
 
 .navbar-nav .nav-link {
-  color: #f0f0f0;
+  color: var(--primary-color);
   font-size: 1.4rem;
 }
 
 .navbar-nav .nav-link.active {
-  color: #3aa39e;
+  color: var(--secondary-highlight-color);
 }
 
 .hero {
@@ -77,9 +87,9 @@ nav.navbar {
 
 .hero h1 {
   font-family: "Rubik Glitch";
-  text-shadow: 0 0 1px rgba(58, 163, 158, 0.5), 0 0 2px rgba(49, 177, 170, 0.5);
+  text-shadow: 0 0 1px rgba(56, 65, 157, 0.5), 0 0 2px rgba(40, 56, 227, 0.5);
   font-size: 6rem;
-  color: #3aa39e;
+  color: var(--secondary-highlight-color);
 }
 
 .hero p {
@@ -114,7 +124,7 @@ nav.navbar {
 
 .card-title {
   text-shadow: 0 0 1px rgba(58, 163, 158, 0.5), 0 0 2px rgba(49, 177, 170, 0.5);
-  color: #3aa39e;
+  color: var(--secondary-highlight-color);
 }
 
 .card-body p {
@@ -129,12 +139,12 @@ nav.navbar {
 footer {
   text-align: center;
   padding: 30px 0;
-  background-color: #121212;
+  background-color: var(--secondary-background-color);
   color: #777;
 }
 
 a:hover {
-  color: #34b8b1 !important;
+  color: var(--highlight-color) !important;
 }
 
 audio {
@@ -164,13 +174,13 @@ audio {
 }
 
 .email-add {
-  color: #3aa39e;
+  color: var(--secondary-highlight-color);
   text-shadow: 0 0 1px rgba(58, 163, 158, 0.5), 0 0 2px rgba(49, 177, 170, 0.5);
 }
 
 .fa {
   width: 50px;
-  color: #3aa39e;
+  color: var(--secondary-highlight-color);
   text-shadow: 0 0 1px rgba(58, 163, 158, 0.5), 0 0 2px rgba(49, 177, 170, 0.5);
   padding-bottom: 2em;
 }
@@ -213,8 +223,8 @@ audio {
 
 .btn-play {
   background: none;
-  border: 1px none #3aa39e;
-  color: #00ffc3;
+  border: 1px none #52d3d8;
+  color: var(--highlight-color);
   font-size: 1.5rem;
   background: none;
   padding: 6px 16px;
@@ -223,8 +233,8 @@ audio {
 }
 
 .btn-play:hover {
-  background-color: #505050;
-  color: #ffffff;
+  background-color: #2c2c2c;
+  color: var(--secondary-highlight-color);
 }
 
 .btn-play i {

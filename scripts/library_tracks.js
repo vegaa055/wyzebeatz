@@ -20,8 +20,8 @@ const buttons = [];
 audioFiles.forEach((track, index) => {
   const ws = WaveSurfer.create({
     container: `#${track.id}`,
-    waveColor: "#3aa39e",
-    progressColor: "#216360",
+    waveColor: "#1c82ad",
+    progressColor: "#064663",
     barWidth: 2,
     height: 60,
     responsive: true,
