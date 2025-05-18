@@ -27,13 +27,30 @@ async function loadTracks() {
         card.className = "track-card";
 
         card.innerHTML = `
-          <div class="track-header">
-            <button class="btn-play" data-id="${id}"><i class="fas fa-play"></i></button>
-            <div class="track-title">${track.title}</div>
-
+        <div class="track-header">
+          <button class="btn-play" data-id="${id}"><i class="fas fa-play"></i></button>
+          <div class="track-title">${track.title}</div>
+        </div>
+        <div class="track-body">
+          <div class="waveform-container">
+            <div id="waveform${id}"></div>
+            <div class="volume-controls">
+              <input
+                type="range"
+                class="volume-slider"
+                data-id="${id}"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+              />
+              <button class="mute-btn" data-id="${id}">
+                <i class="fas fa-volume-up"></i>
+              </button>
+            </div>
           </div>
-          <div id="waveform${id}"></div>
-        `;
+        </div>
+      `;
 
         container.appendChild(card);
 
@@ -57,6 +74,36 @@ async function loadTracks() {
   } catch (error) {
     console.error("Failed to load tracks:", error);
   }
+  // Volume control
+  document.querySelectorAll(".volume-slider").forEach((slider) => {
+    const id = parseInt(slider.dataset.id);
+    slider.addEventListener("input", () => {
+      waveforms[id].setVolume(parseFloat(slider.value));
+    });
+  });
+  document.querySelectorAll(".mute-btn").forEach((btn) => {
+    const id = parseInt(btn.dataset.id);
+    const icon = btn.querySelector("i");
+    const slider = document.querySelector(`.volume-slider[data-id="${id}"]`);
+    let previousVolume = parseFloat(slider.value);
+
+    btn.addEventListener("click", () => {
+      const currentVolume = waveforms[id].getVolume();
+
+      if (currentVolume > 0) {
+        previousVolume = currentVolume;
+        waveforms[id].setVolume(0);
+        slider.value = 0;
+        icon.classList.remove("fa-volume-up");
+        icon.classList.add("fa-volume-mute");
+      } else {
+        waveforms[id].setVolume(previousVolume || 1);
+        slider.value = previousVolume || 1;
+        icon.classList.remove("fa-volume-mute");
+        icon.classList.add("fa-volume-up");
+      }
+    });
+  });
 }
 
 function setupPlayButtons() {
@@ -70,6 +117,7 @@ function setupPlayButtons() {
           wf.pause();
           buttons[i].icon.classList.remove("fa-pause");
           buttons[i].icon.classList.add("fa-play");
+          buttons[i].button.classList.remove("flipped");
         }
       });
 
@@ -77,10 +125,12 @@ function setupPlayButtons() {
         waveforms[index].pause();
         icon.classList.remove("fa-pause");
         icon.classList.add("fa-play");
+        button.classList.remove("flipped");
       } else {
         waveforms[index].play();
         icon.classList.remove("fa-play");
         icon.classList.add("fa-pause");
+        button.classList.add("flipped");
       }
     });
   });

@@ -58,5 +58,10 @@
     "title": "Waves",
     "file": "audio/waves.mp3",
     "genre": "Synthwave"
+  },
+  {
+    "title": "Make_it_Through [With Hook]",
+    "file": "audio/make_it_through.mp3",
+    "genre": "Hip-Hop"
   }
 ]

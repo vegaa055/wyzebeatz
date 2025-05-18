@@ -5,6 +5,7 @@
   --secondary-background-color: #121212;
   --highlight-color: #03b2c9;
   --secondary-highlight-color: #1c82ad;
+  --accent-color: #7c7e86;
   --border-radius: 1rem;
 }
 
@@ -190,8 +191,9 @@ audio {
 }
 
 .genre-title {
-  color: #747474;
+  color: var(--accent-color);
   font-family: "Jura";
+  text-shadow: 0 0 1px rgba(10, 85, 184, 0.5), 0 0 2px rgba(76, 180, 250, 0.5);
 }
 
 .playlist {
@@ -205,6 +207,28 @@ audio {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.volume-slider {
+  width: 25%;
+  margin-top: 12px;
+  appearance: none;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--highlight-color);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .track-header {
@@ -212,6 +236,26 @@ audio {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.mute-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.mute-btn:hover {
+  color: #fff;
 }
 
 .track-title {
@@ -223,13 +267,25 @@ audio {
 
 .btn-play {
   background: none;
-  border: 1px none #52d3d8;
+  border: none;
   color: var(--highlight-color);
   font-size: 1.5rem;
   background: none;
   padding: 6px 16px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: 40%;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btn-play i {
+  display: inline-block;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.btn-play.flipped i {
+  transform: rotateY(180deg);
+  /* text-shadow: 0 0 8px #00ffe1, 0 0 16px #ff007c; */
 }
 
 .btn-play:hover {
