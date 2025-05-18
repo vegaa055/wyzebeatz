@@ -153,8 +153,8 @@ async function loadTracks() {
 
         card.innerHTML = `
           <div class="track-header">
-            <div class="track-title">${track.title}</div>
             <button class="btn-play" data-id="${id}"><i class="fas fa-play"></i></button>
+            <div class="track-title">${track.title}</div>
           </div>
           <div class="track-body">
             <div class="waveform-container">

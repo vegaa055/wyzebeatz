@@ -74,6 +74,18 @@ nav.navbar {
   color: var(--secondary-highlight-color);
 }
 
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(200,200,200,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  border-color: #3aa39e;
+  box-shadow: 0 0 8px #3aa39e;
+}
+.navbar-toggler {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--accent-color);
+}
 .hero {
   padding: 100px 0px;
   background: linear-gradient(135deg, #000000, #363636);
