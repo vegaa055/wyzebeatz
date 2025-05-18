@@ -203,7 +203,8 @@ audio {
 }
 
 .track-card {
-  background: #1b1b1b;
+  background: #212121;
+  background: linear-gradient(rgb(65, 65, 65) 0%, rgb(32, 32, 32) 51%);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
@@ -213,22 +214,33 @@ audio {
 }
 
 .volume-slider {
-  width: 25%;
-  margin-top: 12px;
+  -webkit-appearance: none;
   appearance: none;
+  width: 25%;
   height: 4px;
-  background: var(--accent-color);
   border-radius: 2px;
+  background: linear-gradient(to right, #5c5b5b 100%, #2c2c2c 0%);
+  transition: background 0.2s ease;
   outline: none;
 }
 
 .volume-slider::-webkit-slider-thumb {
-  appearance: none;
+  -webkit-appearance: none;
   width: 12px;
   height: 12px;
-  background: var(--highlight-color);
   border-radius: 50%;
+  background: var(--highlight-color);
   cursor: pointer;
+  border: none;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--highlight-color);
+  cursor: pointer;
+  border: none;
 }
 
 .track-header {

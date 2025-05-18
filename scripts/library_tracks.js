@@ -78,9 +78,13 @@ async function loadTracks() {
   document.querySelectorAll(".volume-slider").forEach((slider) => {
     const id = parseInt(slider.dataset.id);
     slider.addEventListener("input", () => {
+      const id = parseInt(slider.dataset.id);
       waveforms[id].setVolume(parseFloat(slider.value));
+      slider.classList.remove("muted");
+      updateSliderGradient(slider);
     });
   });
+
   document.querySelectorAll(".mute-btn").forEach((btn) => {
     const id = parseInt(btn.dataset.id);
     const icon = btn.querySelector("i");
@@ -88,20 +92,48 @@ async function loadTracks() {
     let previousVolume = parseFloat(slider.value);
 
     btn.addEventListener("click", () => {
-      const currentVolume = waveforms[id].getVolume();
-
-      if (currentVolume > 0) {
-        previousVolume = currentVolume;
+      if (waveforms[id].getVolume() > 0) {
+        previousVolume = waveforms[id].getVolume();
         waveforms[id].setVolume(0);
         slider.value = 0;
+        slider.classList.add("muted");
+        updateSliderGradient(slider);
         icon.classList.remove("fa-volume-up");
         icon.classList.add("fa-volume-mute");
       } else {
-        waveforms[id].setVolume(previousVolume || 1);
-        slider.value = previousVolume || 1;
+        const restoreVolume = previousVolume || 1;
+        waveforms[id].setVolume(restoreVolume);
+        slider.value = restoreVolume;
+        slider.classList.remove("muted");
+        updateSliderGradient(slider);
         icon.classList.remove("fa-volume-mute");
         icon.classList.add("fa-volume-up");
       }
+    });
+  });
+
+  function updateSliderGradient(slider) {
+    const val = parseFloat(slider.value) * 100;
+    if (slider.classList.contains("muted")) {
+      slider.style.background = `linear-gradient(to right, #444 100%, #444 0%)`;
+    } else {
+      slider.style.background = `linear-gradient(to right, #3aa39e ${val}%, #1e1e1e ${val}%)`;
+    }
+  }
+
+  function updateSliderGradient(slider) {
+    const val = parseFloat(slider.value) * 100;
+    slider.style.background = `linear-gradient(to right,rgb(91, 92, 92) ${val}%,rgb(44, 44, 44) ${val}%)`;
+  }
+
+  // Initialize & bind
+  document.querySelectorAll(".volume-slider").forEach((slider) => {
+    updateSliderGradient(slider);
+
+    slider.addEventListener("input", () => {
+      const id = parseInt(slider.dataset.id);
+      waveforms[id].setVolume(parseFloat(slider.value));
+      updateSliderGradient(slider);
     });
   });
 }
