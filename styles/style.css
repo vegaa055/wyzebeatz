@@ -6,6 +6,7 @@
   --highlight-color: #03b2c9;
   --secondary-highlight-color: #1c82ad;
   --accent-color: #7c7e86;
+  --glow-color: #16c47f;
   --border-radius: 1rem;
 }
 
@@ -77,15 +78,18 @@ nav.navbar {
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(200,200,200,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
+
 .navbar-toggler:hover,
 .navbar-toggler:focus {
   border-color: #3aa39e;
   box-shadow: 0 0 8px #3aa39e;
 }
+
 .navbar-toggler {
   padding: 0.6rem 1rem;
   border: 1px solid var(--accent-color);
 }
+
 .hero {
   padding: 100px 0px;
   background: linear-gradient(135deg, #000000, #363636);
@@ -139,7 +143,13 @@ nav.navbar {
   text-shadow: 0 0 1px rgba(58, 163, 158, 0.5), 0 0 2px rgba(49, 177, 170, 0.5);
   color: var(--secondary-highlight-color);
 }
-
+.card-body {
+  background: linear-gradient(rgb(65, 65, 65) 0%, rgb(32, 32, 32) 51%);
+  border-radius: 10px;
+  box-shadow: rgba(0, 215, 255, 0.3) 5px 5px, rgba(0, 215, 255, 0.2) 10px 10px,
+    rgba(0, 215, 255, 0.1) 15px 15px, rgba(0, 215, 255, 0.05) 20px 20px,
+    rgba(0, 215, 255, 0.025) 25px 25px;
+}
 .card-body p {
   font-family: "Jura";
   color: #6e6e6e;
@@ -217,6 +227,9 @@ audio {
 .track-card {
   background: #212121;
   background: linear-gradient(rgb(65, 65, 65) 0%, rgb(32, 32, 32) 51%);
+  box-shadow: rgba(0, 215, 255, 0.3) 5px 5px, rgba(0, 215, 255, 0.2) 10px 10px,
+    rgba(0, 215, 255, 0.1) 15px 15px, rgba(0, 215, 255, 0.05) 20px 20px,
+    rgba(0, 215, 255, 0.025) 25px 25px;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
@@ -225,6 +238,14 @@ audio {
   gap: 10px;
 }
 
+.inner-border {
+  border: 1px solid rgba(59, 59, 59, 0.55);
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;

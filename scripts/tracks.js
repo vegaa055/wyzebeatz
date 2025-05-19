@@ -21,28 +21,29 @@ async function loadTracks() {
       col.innerHTML = `
         <div class="card h-100 text-center">
           <div class="card-body">
-            <h5 class="card-title">${track.title}</h5>
-            <p class="card-text">${track.genre} Instrumental</p>
-            <div class="text-center mt-3">
-              <div id="waveform_${index}"></div>
-                <button class="btn-play mt-2" data-id="${index}">
-                  <i class="fas fa-play"></i>
-                </button>
-              <div class="volume-controls justify-content-center mt-2">
-                <input
-                  type="range"
-                  class="volume-slider"
-                  data-id="${index}"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value="1"
-                />
-                <button class="mute-btn" data-id="${index}">
-                  <i class="fas fa-volume-up"></i>
-                </button>
+            <div class="inner-border">
+              <h5 class="card-title">${track.title}</h5>
+              <p class="card-text">${track.genre} Instrumental</p>
+              <div class="text-center mt-3">
+                <div id="waveform_${index}"></div>
+                  <button class="btn-play mt-2" data-id="${index}">
+                    <i class="fas fa-play"></i>
+                  </button>
+                <div class="volume-controls justify-content-center mt-2">
+                  <input
+                    type="range"
+                    class="volume-slider"
+                    data-id="${index}"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                  />
+                  <button class="mute-btn" data-id="${index}">
+                    <i class="fas fa-volume-up"></i>
+                  </button>
+                </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -152,16 +153,18 @@ async function loadTracks() {
         card.className = "track-card";
 
         card.innerHTML = `
-          <div class="track-header">
-            <button class="btn-play" data-id="${id}"><i class="fas fa-play"></i></button>
-            <div class="track-title">${track.title}</div>
-          </div>
-          <div class="track-body">
-            <div class="waveform-container">
-              <div id="waveform_${id}"></div>
-              <div class="volume-controls">
-                <input type="range" class="volume-slider" data-id="${id}" min="0" max="1" step="0.01" value="1" />
-                <button class="mute-btn" data-id="${id}"><i class="fas fa-volume-up"></i></button>
+          <div class="inner-border">
+            <div class="track-header">
+              <button class="btn-play" data-id="${id}"><i class="fas fa-play"></i></button>
+              <div class="track-title">${track.title}</div>
+            </div>
+            <div class="track-body">
+              <div class="waveform-container">
+                <div id="waveform_${id}"></div>
+                <div class="volume-controls">
+                  <input type="range" class="volume-slider" data-id="${id}" min="0" max="1" step="0.01" value="1" />
+                  <button class="mute-btn" data-id="${id}"><i class="fas fa-volume-up"></i></button>
+                </div>
               </div>
             </div>
           </div>
