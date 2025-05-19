@@ -306,6 +306,7 @@ audio {
 
 .track-title {
   font-size: 1.25rem;
+  text-align: right;
   margin-left: 1rem;
   font-family: "Electrolize";
   color: #ffffff;
@@ -385,9 +386,6 @@ audio {
     font-size: 3.75rem;
   }
   .track-title {
-    font-size: 1rem;
-  }
-  .long-title {
     font-size: 0.75rem;
   }
 }
