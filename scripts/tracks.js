@@ -262,7 +262,7 @@ function updateSliderGradient(slider) {
   if (slider.classList.contains("muted")) {
     slider.style.background = `linear-gradient(to right, #444 100%, #444 0%)`;
   } else {
-    slider.style.background = `linear-gradient(to right, #3aa39e ${val}%, #1e1e1e ${val}%)`;
+    slider.style.background = `linear-gradient(to right, #395B64 ${val}%, #1e1e1e ${val}%)`;
   }
 }
 
