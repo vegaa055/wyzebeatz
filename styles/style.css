@@ -122,11 +122,12 @@ nav.navbar {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.08; /* subtle overlay */
+  opacity: 0.12; /* subtle overlay originally .08 changed to .12 */
 }
 
 .share-content {
   margin-top: 1rem;
+  padding-right: 6px;
 }
 
 .portfolio-section {
@@ -170,8 +171,8 @@ a:hover {
   color: var(--highlight-color) !important;
 }
 
-.share-btn:hover{
-  transform: scale(1.1);
+.share-btn:hover {
+  transform: scale(1.2);
 }
 
 audio {
@@ -295,12 +296,20 @@ audio {
   margin-top: 8px;
 }
 
+.volume-slider {
+  height: 4px;
+  border-radius: 2px;
+  background: #1e1e1e;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
 .mute-btn {
   background: none;
   border: none;
   color: var(--accent-color);
   font-size: 1.2rem;
-  margin-top: 8px;
+  margin-top: 2px;
   cursor: pointer;
 }
 

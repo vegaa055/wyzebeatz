@@ -23,13 +23,13 @@ async function loadTracks() {
           <div class="card-body">
             <div class="inner-border">
               <h5 class="card-title">${track.title}</h5>
-              <p class="card-text">${track.genre}</p>
-              <div class="text-center mt-3">
-                <div id="waveform_${index}"></div>
-                  <button class="btn-play mt-2" data-id="${index}">
+              <p class="card-text">${track.genre} Instrumentals</p>
+              <div class="mt-3">
+                <div id="waveform_${index}" class="mb-3"></div>
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                  <button class="btn-play" data-id="${index}">
                     <i class="fas fa-play"></i>
                   </button>
-                <div class="volume-controls justify-content-center mt-2">
                   <input
                     type="range"
                     class="volume-slider"
@@ -38,6 +38,7 @@ async function loadTracks() {
                     max="1"
                     step="0.01"
                     value="1"
+                    style="flex: 1; max-width: 120px;"
                   />
                   <button class="mute-btn" data-id="${index}">
                     <i class="fas fa-volume-up"></i>
