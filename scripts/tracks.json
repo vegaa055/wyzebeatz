@@ -1,45 +1,51 @@
 [
   {
-    "title": "Never_Stop",
-    "file": "audio/never_stop.mp3",
+    "title": "Just_Hold_On-WyzeBeatz",
+    "file": "audio/just_hold_on-wyze.mp3",
     "featured": true,
     "genre": "Hip-Hop"
   },
   {
+    "title": "Never_Stop",
+    "file": "audio/never_stop.mp3",
+    "featured": true,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
     "title": "The_Journey",
     "file": "audio/the_journey.mp3",
-    "featured": true,
-    "genre": "Hip-Hop"
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
   },
   {
     "title": "Void_Trip",
     "file": "audio/void_trip.mp3",
     "featured": false,
-    "genre": "Hip-Hop"
+    "genre": "Hip-Hop Instrumentals"
   },
   {
     "title": "Built_4_This",
     "file": "audio/built_4_this.mp3",
     "featured": false,
-    "genre": "Hip-Hop"
+    "genre": "Hip-Hop Instrumentals"
   },
   {
     "title": "Ride_With_Me",
     "file": "audio/ride_with_me.mp3",
     "featured": false,
-    "genre": "Hip-Hop"
+    "genre": "Hip-Hop Instrumentals"
   },
   {
     "title": "RAW [Rhythmic_Assault_Weapon]",
     "file": "audio/raw.mp3",
     "featured": false,
-    "genre": "Hip-Hop"
+    "genre": "Hip-Hop Instrumentals"
   },
   {
     "title": "All_The_Smoke",
     "file": "audio/all_the_smoke.mp3",
     "featured": false,
-    "genre": "Hip-Hop"
+    "genre": "Hip-Hop Instrumentals"
   },
   {
     "title": "Neverending_Story [Vega2020_Remix]",
@@ -75,6 +81,12 @@
     "title": "Make_it_Through [With_Hook]",
     "file": "audio/make_it_through.mp3",
     "featured": false,
-    "genre": "Hip-Hop"
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Bad_Habitz",
+    "file": "audio/bad_habitz.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
   }
 ]

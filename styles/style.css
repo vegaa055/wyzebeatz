@@ -170,6 +170,10 @@ a:hover {
   color: var(--highlight-color) !important;
 }
 
+.share-btn:hover{
+  transform: scale(1.1);
+}
+
 audio {
   width: 100%;
   margin-top: 0.5rem;
