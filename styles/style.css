@@ -240,6 +240,7 @@ audio {
 
 .inner-border {
   border: 1px solid rgba(59, 59, 59, 0.55);
+  background: linear-gradient(rgb(26, 25, 25) 0%, rgb(44, 44, 44) 50%);
   height: 100%;
   box-sizing: border-box;
   border-radius: 10px;
