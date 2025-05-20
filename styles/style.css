@@ -57,7 +57,12 @@ body::before {
 }
 
 nav.navbar {
-  background-color: --;
+  background: #999999;
+  background: radial-gradient(
+    circle,
+    rgb(80, 80, 80) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 .navbar-brand {
