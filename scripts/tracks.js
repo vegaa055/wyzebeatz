@@ -23,7 +23,7 @@ async function loadTracks() {
           <div class="card-body">
             <div class="inner-border">
               <h5 class="card-title">${track.title}</h5>
-              <p class="card-text">${track.genre} Instrumentals</p>
+              <p class="card-text">${track.genre}</p>
               <div class="mt-3">
                 <div id="waveform_${index}" class="mb-3"></div>
                 <div class="d-flex align-items-center justify-content-center gap-3">
