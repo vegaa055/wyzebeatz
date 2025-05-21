@@ -14,20 +14,22 @@ async function loadTracks() {
   if (portfolioSection) {
     const featuredTracks = allTracks.filter((t) => t.featured);
 
+    const nowPlayingBar = document.getElementById("now-playing");
+    const nowPlayingTitle = document.getElementById("now-playing-title");
+
     featuredTracks.forEach((track, index) => {
       const col = document.createElement("div");
       col.className = "col";
-
       col.innerHTML = `
         <div class="card h-100 text-center">
           <div class="card-body">
             <div class="inner-border">
               <h5 class="card-title">${track.title}</h5>
-              <p class="card-text">${track.genre}</p>
+              <p class="card-text">${track.genre} Instrumentals</p>
               <div class="mt-3">
                 <div id="waveform_${index}" class="mb-3"></div>
                 <div class="d-flex align-items-center justify-content-center gap-3">
-                  <button class="btn-play" data-id="${index}">
+                  <button class="btn-play" data-id="${index}" data-title="${track.title}">
                     <i class="fas fa-play"></i>
                   </button>
                   <input
@@ -68,6 +70,8 @@ async function loadTracks() {
     setTimeout(() => {
       document.querySelectorAll(".btn-play").forEach((button, index) => {
         const icon = button.querySelector("i");
+        const title = button.dataset.title;
+
         buttons.push({ button, icon });
 
         button.addEventListener("click", () => {
@@ -85,11 +89,21 @@ async function loadTracks() {
             icon.classList.remove("fa-pause");
             icon.classList.add("fa-play");
             button.classList.remove("flipped");
+
+            if (nowPlayingBar) {
+              nowPlayingBar.classList.add("d-none");
+              nowPlayingTitle.textContent = "";
+            }
           } else {
             players[index].play();
             icon.classList.remove("fa-play");
             icon.classList.add("fa-pause");
             button.classList.add("flipped");
+
+            if (nowPlayingBar && nowPlayingTitle) {
+              nowPlayingTitle.textContent = title;
+              nowPlayingBar.classList.remove("d-none");
+            }
           }
         });
       });
@@ -194,6 +208,9 @@ async function loadTracks() {
         buttons.push({ button, icon });
 
         button.addEventListener("click", () => {
+          const nowPlayingBar = document.getElementById("now-playing");
+          const nowPlayingTitle = document.getElementById("now-playing-title");
+
           players.forEach((wf, i) => {
             if (i !== index) {
               wf.pause();
@@ -208,11 +225,25 @@ async function loadTracks() {
             icon.classList.remove("fa-pause");
             icon.classList.add("fa-play");
             button.classList.remove("flipped");
+            if (
+              nowPlayingBar &&
+              nowPlayingTitle &&
+              !players.some((p) => p.isPlaying())
+            ) {
+              nowPlayingBar.classList.add("d-none");
+              nowPlayingTitle.textContent = "";
+            }
           } else {
             players[index].play();
             icon.classList.remove("fa-play");
             icon.classList.add("fa-pause");
             button.classList.add("flipped");
+            if (nowPlayingBar && nowPlayingTitle) {
+              nowPlayingTitle.textContent = button
+                .closest(".track-card")
+                .querySelector(".track-title").textContent;
+              nowPlayingBar.classList.remove("d-none");
+            }
           }
         });
       });
