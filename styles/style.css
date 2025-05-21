@@ -97,11 +97,17 @@ nav.navbar {
 
 #now-playing {
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-family: "Doto";
   text-shadow: 2px 2px 2pxpx rgba(56, 157, 98, 0.5),
     0 0 2px rgba(0, 255, 34, 0.5);
 =======
 >>>>>>> da894ff (added equalizer visualization to now-playing section)
+=======
+  font-family: "Doto";
+  text-shadow: 2px 2px 2pxpx rgba(56, 157, 98, 0.5),
+    0 0 2px rgba(0, 255, 34, 0.5);
+>>>>>>> 3220f54 (changed now-playing font and color)
   max-width: 300px;
   overflow: hidden;
   white-space: nowrap;
