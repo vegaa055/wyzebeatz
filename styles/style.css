@@ -151,6 +151,7 @@ nav.navbar {
     rgba(0, 215, 255, 0.1) 15px 15px, rgba(0, 215, 255, 0.05) 20px 20px,
     rgba(0, 215, 255, 0.025) 25px 25px;
 }
+
 .card-body p {
   font-family: "Jura";
   color: #6e6e6e;
@@ -252,6 +253,7 @@ audio {
   padding: 1rem;
   text-align: center;
 }
+
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -360,6 +362,7 @@ audio {
 #waveform-container > div {
   margin-bottom: 15px;
 }
+
 /* Featured Tracks Begin */
 #waveform_never-stop {
   margin-bottom: 15px;
