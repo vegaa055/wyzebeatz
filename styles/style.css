@@ -7,6 +7,7 @@
   --secondary-highlight-color: #1c82ad;
   --accent-color: #7c7e86;
   --glow-color: #33ff33;
+  --glow-color: #33ff33;
   --border-radius: 1rem;
 }
 
@@ -99,9 +100,10 @@ nav.navbar {
   font-family: "Doto";
   text-shadow: rgba(51, 255, 51, 0.9) 0px 0px 10px;
 
-  max-width: 300px;
+  max-width: 180px;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
   position: relative;
   color: var(--glow-color);
 }
