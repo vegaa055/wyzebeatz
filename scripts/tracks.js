@@ -94,6 +94,10 @@ async function loadTracks() {
               nowPlayingBar.classList.add("d-none");
               nowPlayingTitle.textContent = "";
             }
+            const visualizer = document.getElementById(
+              "now-playing-visualizer"
+            );
+            if (visualizer) visualizer.classList.remove("d-none");
           } else {
             players[index].play();
             icon.classList.remove("fa-play");
@@ -104,6 +108,10 @@ async function loadTracks() {
               nowPlayingTitle.textContent = title;
               nowPlayingBar.classList.remove("d-none");
             }
+            const visualizer = document.getElementById(
+              "now-playing-visualizer"
+            );
+            if (visualizer) visualizer.classList.remove("d-none");
           }
         });
       });
@@ -232,6 +240,10 @@ async function loadTracks() {
             ) {
               nowPlayingBar.classList.add("d-none");
               nowPlayingTitle.textContent = "";
+              const visualizer = document.getElementById(
+                "now-playing-visualizer"
+              );
+              if (visualizer) visualizer.classList.add("d-none");
             }
           } else {
             players[index].play();
@@ -244,6 +256,10 @@ async function loadTracks() {
                 .querySelector(".track-title").textContent;
               nowPlayingBar.classList.remove("d-none");
             }
+            const visualizer = document.getElementById(
+              "now-playing-visualizer"
+            );
+            if (visualizer) visualizer.classList.remove("d-none");
           }
         });
       });
