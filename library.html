@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Comforter&amp;family=Rubik+Glitch&amp;family=Comforter+Brush&amp;family=Electrolize&amp;family=Jura:wght@300..700&amp;family=Zen+Loop:ital@0;1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Comforter&amp;family=Rubik+Glitch&amp;family=Comforter+Brush&amp;family=Electrolize&amp;family=Jura:wght@300..700&amp;family=Zen+Loop:ital@0;1&amp;family=Doto:wght@100..900&amp;display=swap"
       rel="stylesheet"
     />
     <link
@@ -48,8 +48,15 @@
             alt=""
         /></a>
 
-        <span id="now-playing" class="navbar-text ms-3 text-info d-none">
-          Now Playing:<br /><strong id="now-playing-title"></strong>
+        <span id="now-playing" class="navbar-text ms-3 d-none">
+          <span
+            id="now-playing-visualizer"
+            class="equalizer d-none"
+            aria-hidden="true"
+          >
+            <span></span><span></span><span></span>
+          </span>
+          Now Playing:<br /><span id="now-playing-title"></span>
         </span>
 
         <button
