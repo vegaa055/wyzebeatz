@@ -458,6 +458,10 @@ audio {
 }
 /* Featured Tracks End */
 
+.social:hover {
+  transform: scale(1.1);
+}
+
 @media (max-width: 992px) {
   .hero h1 {
     font-size: 5.5rem;
