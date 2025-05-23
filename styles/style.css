@@ -135,7 +135,7 @@ nav.navbar {
   display: inline-block;
   width: 3px;
   height: 100%;
-  background-color: #3aa377;
+  background-color: #4ebb4e;
   animation: equalize 1s infinite ease-in-out;
   border-radius: 1px;
 }
@@ -369,7 +369,7 @@ audio {
 .volume-slider::after {
   content: attr(data-tooltip);
   position: absolute;
-  top: -1.8rem;
+  top: -1rem;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.7rem;

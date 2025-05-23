@@ -4,6 +4,7 @@ async function loadTracks() {
   const response = await fetch("scripts/tracks.json");
   const allTracks = await response.json();
 
+  // retreive the containers for the featured tracks and library tracks
   const trackListContainer = document.getElementById("track-list");
   const portfolioSection = document.querySelector("#featured-tracks");
 
@@ -14,9 +15,11 @@ async function loadTracks() {
   if (portfolioSection) {
     const featuredTracks = allTracks.filter((t) => t.featured);
 
+    // now playing visualizer
     const nowPlayingBar = document.getElementById("now-playing");
     const nowPlayingTitle = document.getElementById("now-playing-title");
 
+    // SET UP FEATURED TRACKS
     featuredTracks.forEach((track, index) => {
       const col = document.createElement("div");
       col.className = "col";
@@ -52,8 +55,9 @@ async function loadTracks() {
         </div>
       `;
 
+      // ADD THE NEWLY CREATED COL TO THE PORTFOLIO SECTION
       portfolioSection.appendChild(col);
-
+      // CREATE WAVEFORM
       const ws = WaveSurfer.create({
         container: `#waveform_${index}`,
         waveColor: "#1c82ad",
@@ -65,6 +69,24 @@ async function loadTracks() {
 
       ws.load(track.file);
       players.push(ws);
+      // WHEN SONG IS FINISHED
+      ws.on("finish", () => {
+        const index = players.indexOf(ws);
+        const nowPlayingBar = document.getElementById("now-playing");
+        const nowPlayingTitle = document.getElementById("now-playing-title");
+        const visualizer = document.getElementById("now-playing-visualizer");
+
+        if (nowPlayingBar) nowPlayingBar.classList.add("d-none");
+        if (nowPlayingTitle) nowPlayingTitle.textContent = "";
+        if (visualizer) visualizer.classList.add("d-none");
+
+        // Reset play/pause icon
+        if (buttons[index]) {
+          buttons[index].icon.classList.remove("fa-pause");
+          buttons[index].icon.classList.add("fa-play");
+          buttons[index].button.classList.remove("flipped");
+        }
+      });
     });
 
     setTimeout(() => {
@@ -215,6 +237,24 @@ async function loadTracks() {
 
         ws.load(track.file);
         players.push(ws);
+        ws.on("finish", () => {
+          const index = players.indexOf(ws);
+          const nowPlayingBar = document.getElementById("now-playing");
+          const nowPlayingTitle = document.getElementById("now-playing-title");
+          const visualizer = document.getElementById("now-playing-visualizer");
+
+          if (nowPlayingBar) nowPlayingBar.classList.add("d-none");
+          if (nowPlayingTitle) nowPlayingTitle.textContent = "";
+          if (visualizer) visualizer.classList.add("d-none");
+
+          // Reset play/pause icon
+          if (buttons[index]) {
+            buttons[index].icon.classList.remove("fa-pause");
+            buttons[index].icon.classList.add("fa-play");
+            buttons[index].button.classList.remove("flipped");
+          }
+        });
+
         id++;
       });
     }
