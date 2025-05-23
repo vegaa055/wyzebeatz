@@ -119,11 +119,20 @@ async function loadTracks() {
       document.querySelectorAll(".volume-slider").forEach((slider) => {
         const id = parseInt(slider.dataset.id);
         slider.addEventListener("input", () => {
+          const value = parseFloat(slider.value);
+          const icon = document.querySelector(`.mute-btn[data-id="${id}"] i`);
           slider.classList.remove("muted");
-          players[id].setVolume(parseFloat(slider.value));
+          players[id].setVolume(value);
           updateSliderGradient(slider);
+
+          if (value === 0) {
+            icon.classList.remove("fa-volume-up");
+            icon.classList.add("fa-volume-mute");
+          } else {
+            icon.classList.remove("fa-volume-mute");
+            icon.classList.add("fa-volume-up");
+          }
         });
-        updateSliderGradient(slider);
       });
 
       document.querySelectorAll(".mute-btn").forEach((btn) => {
@@ -267,11 +276,22 @@ async function loadTracks() {
       document.querySelectorAll(".volume-slider").forEach((slider) => {
         const id = parseInt(slider.dataset.id);
         slider.addEventListener("input", () => {
+          const value = parseFloat(slider.value);
+          const icon = document.querySelector(`.mute-btn[data-id="${id}"] i`);
           slider.classList.remove("muted");
-          players[id].setVolume(parseFloat(slider.value));
+          players[id].setVolume(value);
           updateSliderGradient(slider);
+
+          slider.setAttribute("data-tooltip", `${Math.round(value * 100)}%`);
+
+          if (value === 0) {
+            icon.classList.remove("fa-volume-up");
+            icon.classList.add("fa-volume-mute");
+          } else {
+            icon.classList.remove("fa-volume-mute");
+            icon.classList.add("fa-volume-up");
+          }
         });
-        updateSliderGradient(slider);
       });
 
       document.querySelectorAll(".mute-btn").forEach((btn) => {
@@ -302,6 +322,8 @@ async function loadTracks() {
         });
       });
     }, 100);
+
+    slider.setAttribute("data-tooltip", "100%");
   }
 }
 

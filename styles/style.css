@@ -135,7 +135,7 @@ nav.navbar {
   display: inline-block;
   width: 3px;
   height: 100%;
-  background-color: #3aa39e;
+  background-color: #3aa377;
   animation: equalize 1s infinite ease-in-out;
   border-radius: 1px;
 }
@@ -344,6 +344,7 @@ audio {
   background: linear-gradient(to right, #5c5b5b 100%, #2c2c2c 0%);
   transition: background 0.2s ease;
   outline: none;
+  position: relative;
 }
 
 .volume-slider::-webkit-slider-thumb {
@@ -365,11 +366,25 @@ audio {
   border: none;
 }
 
-.track-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+.volume-slider::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #3aa39e;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.volume-slider:hover::after {
+  opacity: 1;
 }
 
 .volume-controls {
@@ -379,12 +394,11 @@ audio {
   margin-top: 8px;
 }
 
-.volume-slider {
-  height: 4px;
-  border-radius: 2px;
-  background: #1e1e1e;
-  outline: none;
-  transition: background 0.3s ease;
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .mute-btn {
