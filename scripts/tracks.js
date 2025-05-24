@@ -10,6 +10,7 @@ async function loadTracks() {
   const trackListContainer = document.getElementById("track-list");
   const portfolioSection = document.querySelector("#featured-tracks");
 
+  // check if in portfolio section
   if (portfolioSection) {
     const featuredTracks = allTracks.filter((t) => t.featured);
     featuredTracks.forEach((track, index) => {
@@ -24,19 +25,25 @@ async function loadTracks() {
               <div class="mt-3">
                 <div id="waveform_${index}" class="mb-3"></div>
                 <div class="d-flex align-items-center justify-content-center gap-3">
-                  <button class="btn-play" data-id="${index}" data-title="${track.title}">
+                  <button
+                    class="btn-play"
+                    data-id="${index}"
+                    data-title="${track.title}"
+                  >
                     <i class="fas fa-play"></i>
                   </button>
-                  <input
-                    type="range"
-                    class="volume-slider"
-                    data-id="${index}"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value="1"
-                    style="flex: 1; max-width: 120px;"
-                  />
+                  <div class="volume-slider-wrapper" data-tooltip="100%">
+                    <input
+                      type="range"
+                      class="volume-slider"
+                      data-id="${index}"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value="1"
+                    />
+                  </div>
+
                   <button class="mute-btn" data-id="${index}">
                     <i class="fas fa-volume-up"></i>
                   </button>
@@ -53,6 +60,7 @@ async function loadTracks() {
     });
   }
 
+  // check if in track list section
   if (trackListContainer) {
     const grouped = allTracks.reduce((acc, track) => {
       acc[track.genre] = acc[track.genre] || [];
@@ -79,15 +87,34 @@ async function loadTracks() {
               <div class="waveform-container">
                 <div id="waveform_${id}"></div>
                 <div class="row">
-                  <button class="btn-play col-1" data-id="${id}" data-title="${track.title}"><i class="fas fa-play"></i></button>
-                  <div class="volume-controls col-10">
-                    <input type="range" class="volume-slider" data-id="${id}" min="0" max="1" step="0.01" value="1" />
-                    <button class="mute-btn" data-id="${id}"><i class="fas fa-volume-up"></i></button>
+                  <button
+                    class="btn-play col-1"
+                    data-id="${id}"
+                    data-title="${track.title}"
+                  >
+                    <i class="fas fa-play"></i>
+                  </button>
+                  <div class="volume-controls col-10 d-flex align-items-center gap-2">
+                    <div class="volume-slider-wrapper" data-tooltip="100%">
+                      <input
+                        type="range"
+                        class="volume-slider"
+                        data-id="${id}"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1"
+                      />
+                    </div>
+                    <button class="mute-btn" data-id="${id}">
+                      <i class="fas fa-volume-up"></i>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         `;
 
         trackListContainer.appendChild(card);
@@ -204,14 +231,18 @@ function bindPlayControls() {
 function bindVolumeControls() {
   document.querySelectorAll(".volume-slider").forEach((slider) => {
     const id = parseInt(slider.dataset.id);
-    slider.setAttribute("data-tooltip", "100%");
+    slider.parentElement.setAttribute("data-tooltip", "100%");
+
     slider.addEventListener("input", () => {
       const value = parseFloat(slider.value);
       const icon = document.querySelector(`.mute-btn[data-id="${id}"] i`);
       slider.classList.remove("muted");
       players[id].setVolume(value);
       updateSliderGradient(slider);
-      slider.setAttribute("data-tooltip", `${Math.round(value * 100)}%`);
+      slider.parentElement.setAttribute(
+        "data-tooltip",
+        `${Math.round(value * 100)}%`
+      );
 
       if (value === 0) {
         icon.classList.remove("fa-volume-up");
