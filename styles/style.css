@@ -369,7 +369,7 @@ audio {
 .volume-slider::after {
   content: attr(data-tooltip);
   position: absolute;
-  top: -1rem;
+  top: -1.8rem;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.7rem;
