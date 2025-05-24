@@ -20,7 +20,7 @@ async function loadTracks() {
         <div class="card h-100 text-center">
           <div class="card-body">
             <div class="inner-border">
-              <h5 class="card-title">${track.title}</h5>
+              <h5 class="track-title text-center">${track.title}</h5>
               <p class="card-text">${track.genre}</p>
               <div class="mt-3">
                 <div id="waveform_${index}" class="mb-3"></div>
@@ -145,6 +145,14 @@ function createWaveSurferInstance(id, file) {
   return ws;
 }
 
+// Setup finish handler for each WaveSurfer instance
+// This will be called when the track finishes playing
+// and will automatically play the next track in the list
+// If there are no more tracks, it will hide the now playing bar
+// and the visualizer
+// It will also remove the playing highlight from the current track
+// and add it to the next track If the next track is not available,
+// it will hide the now playing bar and the visualizer
 function setupFinishHandler(ws) {
   ws.on("finish", () => {
     const index = players.indexOf(ws);
@@ -165,7 +173,20 @@ function setupFinishHandler(ws) {
         buttons[nextIndex].icon.classList.remove("fa-play");
         buttons[nextIndex].icon.classList.add("fa-pause");
         buttons[nextIndex].button.classList.add("flipped");
+
+        // 🔁 Clear all playing highlights
+        document
+          .querySelectorAll(".track-title")
+          .forEach((el) => el.classList.remove("playing"));
+
+        // ✅ Highlight the now-playing title
+        const titleEl = buttons[nextIndex].button
+          .closest(".track-card, .card")
+          .querySelector(".track-title");
+
+        if (titleEl) titleEl.classList.add("playing");
       }
+
       if (nowPlayingTitle) {
         const title =
           buttons[nextIndex].button.dataset.title || `Track ${nextIndex + 1}`;
@@ -177,6 +198,9 @@ function setupFinishHandler(ws) {
       nowPlayingBar?.classList.add("d-none");
       if (nowPlayingTitle) nowPlayingTitle.textContent = "";
       visualizer?.classList.add("d-none");
+      document
+        .querySelectorAll(".track-title")
+        .forEach((el) => el.classList.remove("playing"));
     }
   });
 }
@@ -200,6 +224,9 @@ function bindPlayControls() {
           buttons[i].button.classList.remove("flipped");
         }
       });
+      document
+        .querySelectorAll(".track-title")
+        .forEach((el) => el.classList.remove("playing"));
 
       if (players[index].isPlaying()) {
         players[index].pause();
@@ -211,12 +238,21 @@ function bindPlayControls() {
           nowPlayingBar?.classList.add("d-none");
           if (nowPlayingTitle) nowPlayingTitle.textContent = "";
           visualizer?.classList.add("d-none");
+          document
+            .querySelectorAll(".track-title")
+            .forEach((el) => el.classList.remove("playing"));
         }
       } else {
         players[index].play();
         icon.classList.remove("fa-play");
         icon.classList.add("fa-pause");
         button.classList.add("flipped");
+        const titleElement = button
+          .closest(".track-card, .card")
+          .querySelector(".track-title");
+        if (titleElement) {
+          titleElement.classList.add("playing");
+        }
 
         if (nowPlayingBar && nowPlayingTitle) {
           nowPlayingTitle.textContent = title;

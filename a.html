@@ -1,0 +1,35 @@
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="inner-border">
+              <h5 class="card-title">${track.title}</h5>
+              <p class="card-text">${track.genre}</p>
+              <div class="mt-3">
+                <div id="waveform_${index}" class="mb-3"></div>
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                  <button
+                    class="btn-play"
+                    data-id="${index}"
+                    data-title="${track.title}"
+                  >
+                    <i class="fas fa-play"></i>
+                  </button>
+                  <div class="volume-slider-wrapper" data-tooltip="100%">
+                    <input
+                      type="range"
+                      class="volume-slider"
+                      data-id="${index}"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value="1"
+                    />
+                  </div>
+
+                  <button class="mute-btn" data-id="${index}">
+                    <i class="fas fa-volume-up"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
