@@ -91,39 +91,35 @@ async function loadTracks() {
             <div class="track-body">
               <div class="waveform-container">
                 <div id="waveform_${id}"></div>
-                <div class="row">
-                  <button
-                    class="btn-play col-1"
-                    data-id="${id}"
-                    data-title="${track.title}"
-                  >
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2 player-controls">
+                  <button class="btn-play" data-id="${id}" data-title="${track.title}">
                     <i class="fas fa-play"></i>
                   </button>
-                  <div class="col-sm d-flex align-items-center justify-content-center">
-                    <div class="volume-controls col-10 d-flex align-items-center gap-2">
-                      <div class="volume-slider-wrapper" data-tooltip="100%">
-                        <input
-                          type="range"
-                          class="volume-slider"
-                          data-id="${id}"
-                          min="0"
-                          max="1"
-                          step="0.01"
-                          value="1"
-                        />
-                      </div>
-                      <button class="mute-btn" data-id="${id}">
-                        <i class="fas fa-volume-up"></i>
-                      </button>
+                  <div class="d-flex align-items-center flex-grow-1 gap-2">
+                    <div class="volume-slider-wrapper" data-tooltip="100%">
+                      <input
+                        type="range"
+                        class="volume-slider"
+                        data-id="${id}"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1"
+                      />
                     </div>
-                    <div id="track-time_${id}" class="track-time text-light small mt-2">
+                    <button class="mute-btn" data-id="${id}">
+                      <i class="fas fa-volume-up"></i>
+                    </button>
+                    <div id="track-time_${id}" class="track-time text-light small ms-auto">
                       00:00 / 00:00
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
+
         `;
 
         trackListContainer.appendChild(card);
