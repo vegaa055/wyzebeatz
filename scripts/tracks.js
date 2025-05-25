@@ -3,6 +3,9 @@
 const players = [];
 const buttons = [];
 
+// Load the tracks from the JSON file
+// This function fetches the tracks from the JSON filter
+// and creates the track cards in the portfolio section
 async function loadTracks() {
   const response = await fetch("scripts/tracks.json");
   const allTracks = await response.json();
@@ -131,6 +134,9 @@ async function loadTracks() {
   }, 100);
 }
 
+// Create a WaveSurfer instance for each track
+// This function initializes the WaveSurfer instance
+// and loads the audio file into it
 function createWaveSurferInstance(id, file) {
   const ws = WaveSurfer.create({
     container: `#waveform_${id}`,

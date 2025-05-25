@@ -285,7 +285,13 @@ audio {
 
 .email-add {
   color: var(--secondary-highlight-color);
+  font-size: 20px;
   text-shadow: 0 0 1px rgba(58, 163, 158, 0.5), 0 0 2px rgba(49, 177, 170, 0.5);
+}
+
+.email-add:hover {
+  color: var(--highlight-color);
+  text-shadow: 0 0 1px rgba(58, 133, 163, 0.5), 0 0 2px rgba(31, 93, 117, 0.5);
 }
 
 .fa {
@@ -424,13 +430,16 @@ audio {
   font-size: 1.25rem;
   text-align: right;
   margin-left: 1rem;
-  font-family: "Electrolize";
+  /* font-family: "Electrolize"; */
+  font-family: "Doto";
   color: #ffffff;
 }
 
 .track-title.playing {
   color: var(--glow-color);
+  text-shadow: rgba(51, 255, 51, 0.9) 0px 0px 16px;
   transition: color 0.2s ease;
+  font-weight: bold;
 }
 
 .btn-play {
