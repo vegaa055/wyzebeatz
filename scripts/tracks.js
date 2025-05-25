@@ -5,7 +5,7 @@ const buttons = [];
 
 // Load the tracks from the JSON file
 // This function fetches the tracks from the JSON filter
-// and creates the track cards in the portfolio section
+
 async function loadTracks() {
   const response = await fetch("scripts/tracks.json");
   const allTracks = await response.json();
