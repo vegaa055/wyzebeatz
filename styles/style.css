@@ -324,7 +324,7 @@ audio {
     rgba(0, 215, 255, 0.1) 15px 15px, rgba(0, 215, 255, 0.05) 20px 20px,
     rgba(0, 215, 255, 0.025) 25px 25px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 1rem;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -337,7 +337,7 @@ audio {
   height: 100%;
   box-sizing: border-box;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 6px;
   text-align: center;
 }
 
@@ -404,6 +404,7 @@ audio {
   gap: 10px;
   margin-top: -6px;
   justify-content: end;
+  padding-right: 8px;
 }
 
 .track-header {
@@ -415,6 +416,7 @@ audio {
 
 .track-time {
   font-family: "Jura";
+  text-align: end;
 }
 .mute-btn {
   background: none;
@@ -431,7 +433,7 @@ audio {
 
 .track-title {
   font-size: 1.25rem;
-  text-align: right;
+  text-align: start;
   margin-left: 1rem;
   /* font-family: "Electrolize"; */
   font-family: "Doto";
@@ -469,7 +471,7 @@ audio {
 }
 
 .btn-play:hover {
-  background-color: #2c2c2c;
+  /* background-color: #2c2c2c; */
   color: var(--secondary-highlight-color);
 }
 
@@ -554,6 +556,9 @@ audio {
       animation: marquee 8s linear infinite;
     }
 
+    .volume-slider {
+      width: 75%;
+    }
     .navbar-toggler {
       margin-left: auto;
     }
