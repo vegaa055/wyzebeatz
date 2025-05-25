@@ -413,6 +413,9 @@ audio {
   margin-bottom: 10px;
 }
 
+.track-time{
+  font-family: "Electrolize"; 
+}
 .mute-btn {
   background: none;
   border: none;

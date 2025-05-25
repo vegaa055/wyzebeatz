@@ -46,10 +46,12 @@ async function loadTracks() {
                       value="1"
                     />
                   </div>
-
                   <button class="mute-btn" data-id="${index}">
                     <i class="fas fa-volume-up"></i>
                   </button>
+                  <div id="track-time_${index}" class="track-time text-light small mt-2">
+                    00:00/00:00
+                  </div>
                 </div>
               </div>
             </div>
@@ -85,6 +87,9 @@ async function loadTracks() {
           <div class="inner-border">
             <div class="track-header">
               <div class="track-title">${track.title}</div>
+              <div id="track-time_${id}" class="track-time text-light small mt-2">
+                00:00/00:00
+              </div>
             </div>
             <div class="track-body">
               <div class="waveform-container">
@@ -117,7 +122,6 @@ async function loadTracks() {
               </div>
             </div>
           </div>
-
         `;
 
         trackListContainer.appendChild(card);
@@ -146,8 +150,33 @@ function createWaveSurferInstance(id, file) {
     height: 60,
     responsive: true,
   });
+
   ws.load(file);
   players.push(ws);
+
+  const timeDisplay = document.getElementById(`track-time_${id}`);
+
+  ws.on("ready", () => {
+    const duration = formatTime(ws.getDuration());
+    timeDisplay.textContent = `00:00/${duration}`;
+  });
+
+  ws.on("audioprocess", () => {
+    const current = formatTime(ws.getCurrentTime());
+    const total = formatTime(ws.getDuration());
+    timeDisplay.textContent = `${current}/${total}`;
+  });
+
+  ws.on("seek", () => {
+    const current = formatTime(ws.getCurrentTime());
+    const total = formatTime(ws.getDuration());
+    timeDisplay.textContent = `${current}/${total}`;
+  });
+
+  ws.on("finish", () => {
+    timeDisplay.textContent = `00:00/${formatTime(ws.getDuration())}`;
+  });
+
   return ws;
 }
 
@@ -321,6 +350,12 @@ function bindVolumeControls() {
       }
     });
   });
+}
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
 function updateSliderGradient(slider) {
