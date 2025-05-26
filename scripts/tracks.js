@@ -91,7 +91,7 @@ async function loadTracks() {
             <div class="track-body">
               <div class="waveform-container">
                 <div id="waveform_${id}"></div>
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2 player-controls">
+                <div class="d-flex flex-row align-items-center justify-content-between gap-2 mt-2 player-controls">
                   <button class="btn-play" data-id="${id}" data-title="${track.title}">
                     <i class="fas fa-play"></i>
                   </button>
