@@ -94,5 +94,11 @@
     "file": "audio/used_to_do.mp3",
     "featured": false,
     "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Codeine_Dreamz",
+    "file": "audio/codeine_dreamz.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
   }
 ]
