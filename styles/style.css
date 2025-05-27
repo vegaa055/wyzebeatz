@@ -402,9 +402,8 @@ audio {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: -6px;
   justify-content: end;
-  padding-right: 8px;
+  padding-right: 2px;
 }
 
 .track-header {
@@ -451,6 +450,7 @@ audio {
   background: none;
   border: none;
   color: var(--highlight-color);
+  margin-bottom: -6px;
   font-size: 1.5rem;
   background: none;
   padding: 6px 16px;

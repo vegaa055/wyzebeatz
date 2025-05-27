@@ -2,6 +2,7 @@
 
 const players = [];
 const buttons = [];
+const barWidth = 1;
 
 // Load the tracks from the JSON file
 // This function fetches the tracks from the JSON filter
@@ -144,7 +145,7 @@ function createWaveSurferInstance(id, file) {
     container: `#waveform_${id}`,
     waveColor: "#1c82ad",
     progressColor: "#064663",
-    barWidth: 2,
+    barWidth: barWidth,
     height: 60,
     responsive: true,
   });
