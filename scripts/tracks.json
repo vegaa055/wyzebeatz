@@ -106,5 +106,11 @@
     "file": "audio/end_of_the_summer.mp3",
     "featured": false,
     "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Redemption_Arc",
+    "file": "audio/redemption_arc.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
   }
 ]
