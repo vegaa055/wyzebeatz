@@ -180,6 +180,11 @@ canvas#visualizer {
   .player-container {
     width: 350px;
   }
+
+  #progress {
+    margin-top: 1rem;
+    width: 100%;
+  }
   .track-title-time {
     font-size: 0.75rem;
   }
