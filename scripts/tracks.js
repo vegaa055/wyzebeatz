@@ -120,7 +120,6 @@ async function loadTracks() {
               </div>
             </div>
           </div>
-
         `;
 
         trackListContainer.appendChild(card);

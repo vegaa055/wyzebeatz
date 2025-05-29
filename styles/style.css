@@ -497,16 +497,15 @@ audio {
 }
 /* Featured Tracks End */
 
-.social-media-links{
+.social-media-links {
   margin-top: 5rem;
 }
 
-.social{
+.social {
   padding-bottom: 1rem;
 }
 .social:hover {
   transform: scale(1.1);
-
 }
 
 @media (max-width: 992px) {
