@@ -197,6 +197,7 @@ canvas#visualizer {
   }
   .player-container {
     width: 350px;
+    height: 25vh;
   }
 
   #progress {
