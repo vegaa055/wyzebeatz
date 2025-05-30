@@ -81,11 +81,15 @@ function playAudio() {
   audioCtx.resume(); // Resume context if suspended (mobile)
   audio.play();
   playBtn.innerHTML = `<i class="fas fa-pause"></i>`;
+  currentTitle.style.color = "#33ff33";
+  currentTitle.style.textShadow = "rgba(51, 255, 51, 0.9) 0px 0px 20px";
 }
 
 function pauseAudio() {
   audio.pause();
   playBtn.innerHTML = `<i class="fas fa-play"></i>`;
+  currentTitle.style.color = "#f0f0f0";
+  currentTitle.style.textShadow = "none";
 }
 
 function togglePlay() {
@@ -175,23 +179,43 @@ function animateVisualizer() {
     requestAnimationFrame(draw);
     analyser.getByteFrequencyData(dataArray);
 
-    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const barWidth = (canvas.width / bufferLength) * 2.5;
-    let x = 0;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const barWidth = (canvas.width / bufferLength) * 0.5;
 
-    for (let i = 0; i < bufferLength; i++) {
-      const barHeight = dataArray[i];
-      const r = barHeight + 25 * (i / bufferLength);
-      const g = 250 * (i / bufferLength);
-      const b = 50;
+    ctx.save();
+    ctx.translate(centerX, centerY);
 
-      ctx.fillStyle = `rgb(${r},${g},${b})`;
-      ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-      x += barWidth + 1;
+    for (let q = 0; q < 4; q++) {
+      ctx.save();
+
+      // Position each quadrant:
+      // 0: lower right, 1: lower left, 2: upper left, 3: upper right
+      if (q === 1) ctx.scale(-1, 1); // flip horizontally
+      if (q === 2) ctx.scale(-1, -1); // flip horizontally + vertically
+      if (q === 3) ctx.scale(1, -1); // flip vertically
+
+      let x = 0;
+      for (let i = 0; i < bufferLength; i++) {
+        const barHeight = dataArray[i];
+        const r = barHeight + 25 * (i / bufferLength);
+        const g = 250 * (i / bufferLength);
+        const b = 50;
+
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillRect(x, 0, barWidth, -barHeight); // draw upward from center
+        x += barWidth + 1;
+      }
+
+      ctx.restore();
     }
+
+    ctx.restore();
   }
+
   draw();
 }
 

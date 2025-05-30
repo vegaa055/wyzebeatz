@@ -83,9 +83,16 @@
     <!-- NAVBAR END -->
 
     <div id="ui-overlay">
-      <div class="playlist">
-        <h3>Playlist</h3>
-        <ul id="track-list"></ul>
+      <div class="playlist-container">
+        <div class="playlist-header sticky-top">
+          <h2>Playlist</h2>
+          <button id="toggle-playlist" class="btn btn-primary">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <div class="playlist">
+          <ul id="track-list"></ul>
+        </div>
       </div>
 
       <div class="player-container sticky">
