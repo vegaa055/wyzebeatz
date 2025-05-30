@@ -8,6 +8,14 @@ const nextBtn = document.getElementById("next");
 const progressBar = document.getElementById("progress");
 const volumeSlider = document.getElementById("volume");
 const muteBtn = document.getElementById("mute");
+const colorLow = document.getElementById("color-low");
+const colorMid = document.getElementById("color-mid");
+const colorHigh = document.getElementById("color-high");
+const toggleColorCtrl = document.getElementById("toggle-color-controls");
+const colorControlParams = document.getElementById("color-control-params");
+const togglePlaylist = document.getElementById("toggle-playlist");
+const playlist = document.getElementById("playlist");
+const playlistTitle = document.getElementById("playlist-title");
 
 let tracks = [];
 let currentIndex = 0;
@@ -153,6 +161,30 @@ muteBtn.addEventListener("click", () => {
   updateMuteIcon();
 });
 
+togglePlaylist.addEventListener("click", () => {
+  const icon = togglePlaylist.querySelector("i");
+
+  if (playlist.style.display == "none") {
+    playlist.style.display = "flex";
+    icon.className = "fa fa-eye active"; // Unhidden icon
+  } else {
+    playlist.style.display = "none";
+    icon.className = "fa fa-eye-slash inactive"; // Hidden icon
+  }
+});
+
+toggleColorCtrl.addEventListener("click", () => {
+  const icon = toggleColorCtrl.querySelector("i");
+
+  if (colorControlParams.style.display == "none") {
+    colorControlParams.style.display = "flex";
+    icon.className = "fa fa-eye active"; // Unhidden icon
+  } else {
+    colorControlParams.style.display = "none";
+    icon.className = "fa fa-eye-slash inactive"; // Hidden icon
+  }
+});
+
 function updateMuteIcon() {
   if (audio.muted || audio.volume === 0) {
     muteBtn.innerHTML = `<i class="fas fa-volume-mute"></i>`;
@@ -167,6 +199,23 @@ function formatTime(seconds) {
   const min = Math.floor(seconds / 60);
   const sec = Math.floor(seconds % 60);
   return `${min}:${sec < 10 ? "0" : ""}${sec}`;
+}
+
+function hexToRgb(hex) {
+  const bigint = parseInt(hex.replace("#", ""), 16);
+  return {
+    r: (bigint >> 16) & 255,
+    g: (bigint >> 8) & 255,
+    b: bigint & 255,
+  };
+}
+
+function lerpColor(c1, c2, t) {
+  return {
+    r: Math.round(c1.r + (c2.r - c1.r) * t),
+    g: Math.round(c1.g + (c2.g - c1.g) * t),
+    b: Math.round(c1.b + (c2.b - c1.b) * t),
+  };
 }
 
 function animateVisualizer() {
@@ -186,27 +235,37 @@ function animateVisualizer() {
     const centerY = canvas.height / 2;
     const barWidth = (canvas.width / bufferLength) * 0.5;
 
+    const lowRGB = hexToRgb(colorLow.value);
+    const midRGB = hexToRgb(colorMid.value);
+    const highRGB = hexToRgb(colorHigh.value);
+
     ctx.save();
     ctx.translate(centerX, centerY);
 
     for (let q = 0; q < 4; q++) {
       ctx.save();
-
-      // Position each quadrant:
-      // 0: lower right, 1: lower left, 2: upper left, 3: upper right
-      if (q === 1) ctx.scale(-1, 1); // flip horizontally
-      if (q === 2) ctx.scale(-1, -1); // flip horizontally + vertically
-      if (q === 3) ctx.scale(1, -1); // flip vertically
+      if (q === 1) ctx.scale(-1, 1);
+      if (q === 2) ctx.scale(-1, -1);
+      if (q === 3) ctx.scale(1, -1);
 
       let x = 0;
       for (let i = 0; i < bufferLength; i++) {
         const barHeight = dataArray[i];
-        const r = barHeight + 25 * (i / bufferLength);
-        const g = 250 * (i / bufferLength);
-        const b = 50;
 
-        ctx.fillStyle = `rgb(${r},${g},${b})`;
-        ctx.fillRect(x, 0, barWidth, -barHeight); // draw upward from center
+        // Nonlinear mapping across buffer
+        const tRaw = i / bufferLength;
+        const t = Math.sin((tRaw * Math.PI) / 2); // shifts more bars into highs (right side)
+
+        // Get smooth gradient
+        let rgb;
+        if (t < 0.5) {
+          rgb = lerpColor(lowRGB, midRGB, t * 2);
+        } else {
+          rgb = lerpColor(midRGB, highRGB, (t - 0.5) * 2);
+        }
+
+        ctx.fillStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        ctx.fillRect(x, 0, barWidth, -barHeight);
         x += barWidth + 1;
       }
 

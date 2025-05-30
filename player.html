@@ -85,16 +85,33 @@
     <div id="ui-overlay">
       <div class="playlist-container">
         <div class="playlist-header sticky-top">
-          <h2>Playlist</h2>
-          <button id="toggle-playlist" class="btn btn-primary">
-            <i class="fas fa-eye"></i>
+          <h2 class="playlist-title">Playlist</h2>
+          <button id="toggle-playlist" class="btn playlist-hide">
+            <i class="fas fa-eye active"></i>
           </button>
         </div>
-        <div class="playlist">
+        <div class="playlist" id="playlist">
           <ul id="track-list"></ul>
         </div>
       </div>
 
+      <div class="color-controls">
+        <div class="color-controls-head">
+          <h5 class="color-controls-title">Color Controls</h5>
+          <button id="toggle-color-controls" class="btn color-controls-hide">
+            <i class="fas fa-eye active"></i>
+          </button>
+        </div>
+
+        <div id="color-control-params">
+          <label>Low Freq</label>
+          <input type="color" id="color-low" value="#ff0000" />
+          <label>Mid Freq</label>
+          <input type="color" id="color-mid" value="#00ff00" />
+          <label>High Freq</label>
+          <input type="color" id="color-high" value="#0000ff" />
+        </div>
+      </div>
       <div class="player-container sticky">
         <div class="inner-container">
           <div class="track-title-time">
