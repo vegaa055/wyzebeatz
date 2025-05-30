@@ -166,6 +166,7 @@ togglePlaylist.addEventListener("click", () => {
 
   if (playlist.style.display == "none") {
     playlist.style.display = "flex";
+
     icon.className = "fa fa-eye active"; // Unhidden icon
   } else {
     playlist.style.display = "none";
