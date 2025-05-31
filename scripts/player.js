@@ -164,20 +164,19 @@ muteBtn.addEventListener("click", () => {
 togglePlaylist.addEventListener("click", () => {
   const icon = togglePlaylist.querySelector("i");
 
-  if (playlist.style.display == "none") {
+  if (playlist.style.display === "none") {
     playlist.style.display = "flex";
-
-    icon.className = "fa fa-eye active"; // Unhidden icon
+    icon.className = "fa fa-eye active";
   } else {
     playlist.style.display = "none";
-    icon.className = "fa fa-eye-slash inactive"; // Hidden icon
+    icon.className = "fa fa-eye-slash inactive";
   }
 });
 
 toggleColorCtrl.addEventListener("click", () => {
   const icon = toggleColorCtrl.querySelector("i");
 
-  if (colorControlParams.style.display == "none") {
+  if (colorControlParams.style.display === "none") {
     colorControlParams.style.display = "flex";
     icon.className = "fa fa-eye active"; // Unhidden icon
   } else {

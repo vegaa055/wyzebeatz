@@ -168,6 +168,22 @@ canvas#visualizer {
   margin-bottom: 1rem;
 }
 
+.center-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* or whatever size your button is */
+  height: 50px;
+}
+
+.center-icon i {
+  margin-top: 1em;
+  font-size: 1.25rem;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+}
+
 .controls {
   display: flex;
   justify-content: space-between;
