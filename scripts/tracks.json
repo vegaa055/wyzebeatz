@@ -112,5 +112,23 @@
     "file": "audio/redemption_arc.mp3",
     "featured": false,
     "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Faded_Memories",
+    "file": "audio/faded_memories.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Darkness_Rising",
+    "file": "audio/darkness_rising.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Star_Bound",
+    "file": "audio/star_bound.mp3",
+    "featured": false,
+    "genre": "Synthwave"
   }
 ]
