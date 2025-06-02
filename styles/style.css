@@ -95,6 +95,13 @@ nav.navbar {
   border: 1px solid var(--accent-color);
 }
 
+#mode-toggle {
+  width: 12em;
+  bottom: 1rem;
+  right: 1rem;
+  position: fixed;
+}
+
 #now-playing {
   font-family: "Doto";
   text-shadow: rgba(51, 255, 51, 0.9) 0px 0px 10px;
