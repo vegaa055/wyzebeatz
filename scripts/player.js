@@ -41,6 +41,14 @@ function hexToRgb(hex) {
   };
 }
 
+// Nebula cloud variables
+let nebulaDriftX = 0;
+let nebulaDriftY = 0;
+let driftTime = 0;
+
+// particles
+let particles = [];
+
 function lerpColor(color1, color2, t) {
   return {
     r: Math.round(color1.r + (color2.r - color1.r) * t),
@@ -111,7 +119,7 @@ function drawBackground() {
   if (bgHueOffset > 360) bgHueOffset = 0;
 
   const animatedHue = (bgHueBase + bgHueOffset) % 360;
-  const backgroundColor = `hsl(${animatedHue}, 40%, 7%)`;
+  const backgroundColor = `hsl(${animatedHue}, 40%, 10%)`;
 
   ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -141,6 +149,8 @@ function initAudioContext() {
   draw();
 }
 
+// Function to draw the bars visualizer
+// This will create a series of vertical bars that change height based on frequency data
 function drawBars() {
   analyser.getByteFrequencyData(dataArray);
   drawBackground();
@@ -188,6 +198,8 @@ function drawBars() {
   ctx.restore();
 }
 
+// Function to draw the orb effect
+// This will create a circular pattern of dots that change size and color based on frequency data
 function drawOrb() {
   analyser.getByteFrequencyData(dataArray);
   drawBackground();
@@ -218,6 +230,130 @@ function drawOrb() {
   ctx.restore();
 }
 
+// Function to draw the nebula effect
+// This will create a grid of ellipses that change color based on frequency data
+function drawNebula() {
+  analyser.getByteFrequencyData(dataArray);
+  drawBackground();
+
+  const width = canvas.width;
+  const height = canvas.height;
+  const cols = 60;
+  const rows = 40;
+  const cellWidth = width / cols;
+  const cellHeight = height / rows;
+
+  // Drift offsets using slow sin waves
+  driftTime += 0.01;
+  const driftX = Math.sin(driftTime * 0.6) * 10; // pixels
+  const driftY = Math.cos(driftTime * 0.3) * 10;
+
+  const lowRGB = hexToRgb(colorLow.value);
+  const midRGB = hexToRgb(colorMid.value);
+  const highRGB = hexToRgb(colorHigh.value);
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const i = Math.floor((x + y * cols) % bufferLength);
+      const value = dataArray[i] / 256;
+
+      let t = i / bufferLength;
+      let rgb;
+      if (t < 0.33) rgb = lerpColor(lowRGB, midRGB, t / 0.33);
+      else if (t < 0.66) rgb = lerpColor(midRGB, highRGB, (t - 0.33) / 0.33);
+      else rgb = highRGB;
+
+      const alpha = value * 0.5;
+      ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+
+      const px =
+        x * cellWidth +
+        cellWidth / 2 +
+        Math.sin(driftTime + x * 0.1 + y * 0.05) * driftX;
+      const py =
+        y * cellHeight +
+        cellHeight / 2 +
+        Math.cos(driftTime + x * 0.05 + y * 0.1) * driftY;
+
+      ctx.beginPath();
+      ctx.ellipse(
+        px,
+        py,
+        cellWidth * value * 1.5,
+        cellHeight * value * 1.5,
+        0,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+    }
+  }
+}
+
+function drawParticles() {
+  analyser.getByteFrequencyData(dataArray);
+
+  // Semi-transparent fill to leave trails
+  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+  const lowRGB = hexToRgb(colorLow.value);
+  const midRGB = hexToRgb(colorMid.value);
+  const highRGB = hexToRgb(colorHigh.value);
+
+  // Emit new particles
+  for (let i = 0; i < bufferLength; i += 5) {
+    const amplitude = dataArray[i] / 256;
+    if (amplitude < 0.1) continue;
+
+    const angle = (i / bufferLength) * Math.PI * 2;
+    const speed = amplitude * 10;
+    const vx = Math.cos(angle) * speed;
+    const vy = Math.sin(angle) * speed;
+
+    // Interpolate color
+    let t = i / bufferLength;
+    let rgb;
+    if (t < 0.33) rgb = lerpColor(lowRGB, midRGB, t / 0.33);
+    else if (t < 0.66) rgb = lerpColor(midRGB, highRGB, (t - 0.33) / 0.33);
+    else rgb = highRGB;
+
+    particles.push({
+      x: centerX,
+      y: centerY,
+      vx,
+      vy,
+      life: 100,
+      size: 2 + amplitude * 5,
+      color: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)`,
+    });
+  }
+
+  // Update + draw particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life -= 1;
+
+    const alpha = p.life / 100;
+    const fadedColor = p.color.replace(/[\d.]+\)$/g, `${alpha})`);
+
+    ctx.beginPath();
+    ctx.fillStyle = fadedColor;
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (p.life <= 0) {
+      particles.splice(i, 1);
+    }
+  }
+}
+
+// Function to get color based on frequency index
 function getFrequencyColor(index, total) {
   const third = Math.floor(total / 3);
   if (index < third) return colorLow.value;
@@ -225,15 +361,17 @@ function getFrequencyColor(index, total) {
   return colorHigh.value;
 }
 
+// Main drawing function
+// This will be called recursively to create the animation
 function draw() {
   if (!analyser) return;
   animationId = requestAnimationFrame(draw);
   const mode = modeToggle.value;
-  if (mode === "bars") {
-    drawBars();
-  } else if (mode === "orb") {
-    drawOrb();
-  }
+
+  if (mode === "bars") drawBars();
+  else if (mode === "orb") drawOrb();
+  else if (mode === "nebula") drawNebula();
+  else if (mode === "particles") drawParticles();
 }
 
 function stopDrawing() {
@@ -251,12 +389,40 @@ function loadTrack(index) {
     `#track-list li[data-index="${index}"]`
   );
   if (activeItem) activeItem.classList.add("active");
+
   audio.src = track.file;
   audio.load();
-  audio.play();
+
+  audio.addEventListener(
+    "loadedmetadata",
+    () => {
+      audio.currentTime = 0;
+      audio.play();
+
+      playBtn.innerHTML = `<i class="fas fa-pause"></i>`;
+      currentTitle.style.color = "#33ff33";
+      currentTitle.style.textShadow = "rgba(51, 255, 51, 0.9) 0px 0px 20px";
+
+      updateProgressBar(); // optional: jump-start progress UI
+    },
+    { once: true }
+  ); // avoid stacking multiple events
+
   if (!audioContext) initAudioContext();
   updateBackgroundHueBase();
 }
+
+audio.addEventListener("play", () => {
+  playBtn.innerHTML = `<i class="fas fa-pause"></i>`;
+  currentTitle.style.color = "#33ff33";
+  currentTitle.style.textShadow = "rgba(51, 255, 51, 0.9) 0px 0px 20px";
+});
+
+audio.addEventListener("pause", () => {
+  playBtn.innerHTML = `<i class="fas fa-play"></i>`;
+  currentTitle.style.color = "#f0f0f0";
+  currentTitle.style.textShadow = "none";
+});
 
 function togglePlayPause() {
   if (audio.paused) {
@@ -292,13 +458,41 @@ function loadPlaylist() {
     .then((response) => response.json())
     .then((data) => {
       tracks = data;
-      data.forEach((track, index) => {
-        const li = document.createElement("li");
-        li.textContent = track.title;
-        li.dataset.index = index;
-        li.addEventListener("click", () => loadTrack(index));
-        trackListContainer.appendChild(li);
+
+      // Group by genre
+      const genreMap = {};
+      data.forEach((track) => {
+        if (!genreMap[track.genre]) genreMap[track.genre] = [];
+        genreMap[track.genre].push(track);
       });
+
+      // Clear previous
+      trackListContainer.innerHTML = "";
+
+      // Render grouped tracks
+      Object.entries(genreMap).forEach(([genre, trackArray]) => {
+        const header = document.createElement("li");
+        header.textContent = genre;
+        header.className = "genre-header";
+        header.style.fontWeight = "bold";
+        header.style.marginTop = "1rem";
+        header.style.color = "#33ff33";
+        trackListContainer.appendChild(header);
+
+        trackArray.forEach((track, index) => {
+          const li = document.createElement("li");
+          li.textContent = track.title;
+          li.dataset.index = data.indexOf(track); // original index
+          li.classList.add("track-item");
+
+          li.addEventListener("click", () => {
+            loadTrack(parseInt(li.dataset.index));
+          });
+
+          trackListContainer.appendChild(li);
+        });
+      });
+
       loadTrack(0);
     });
 }
