@@ -79,12 +79,16 @@
     <!-- NAVBAR END -->
 
     <div id="ui-overlay">
+      <!-- TOGGLE VISUALIZATION MODE START -->
       <select id="mode-toggle" class="visualizer-select">
         <option value="bars">Bars</option>
         <option value="orb">Spectrum Orb</option>
         <option value="nebula">Nebula Clouds</option>
         <option value="particles">Particles & Trails</option>
       </select>
+      <!-- TOGGLE VISUALIZATION MODE END -->
+
+      <!-- PLAYLIST START -->
       <div class="playlist-container">
         <div class="playlist-header sticky-top">
           <h2 class="playlist-title">Playlist</h2>
@@ -96,7 +100,9 @@
           <ul id="track-list"></ul>
         </div>
       </div>
+      <!-- PLAYLIST END -->
 
+      <!-- COLOR CONTROLS START -->
       <div class="color-controls">
         <div class="color-controls-head">
           <h5 class="color-controls-title">Color Controls</h5>
@@ -117,6 +123,7 @@
           <input type="color" id="color-high" value="#0000ff" />
         </div>
       </div>
+      <!-- COLOR CONTROLS END -->
 
       <div class="player-container sticky">
         <div class="inner-container">
