@@ -125,6 +125,7 @@
       </div>
       <!-- COLOR CONTROLS END -->
 
+      <!-- PLAYER START -->
       <div class="player-container sticky">
         <div class="inner-container">
           <div class="track-title-time">
@@ -132,6 +133,7 @@
             <span id="current-time">0:00 / 0:00</span>
           </div>
           <input type="range" id="progress" value="0" step="1" />
+          <!-- PLAYER CONTROLS START -->
           <div class="controls">
             <button id="prev"><i class="fas fa-backward"></i></button>
             <button id="play"><i class="fas fa-play"></i></button>
@@ -148,8 +150,10 @@
               />
             </div>
           </div>
+          <!-- PLAYER CONTROLS END -->
         </div>
       </div>
+      <!-- PLAYER END -->
     </div>
 
     <audio id="audio" crossorigin="anonymous"></audio>

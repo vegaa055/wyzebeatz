@@ -191,10 +191,8 @@ function drawBars() {
       ctx.fillRect(x, 0, barWidth, -barHeight);
       x += barWidth + 1;
     }
-
     ctx.restore();
   }
-
   ctx.restore();
 }
 
