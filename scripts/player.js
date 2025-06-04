@@ -369,7 +369,7 @@ function draw() {
   const mode = modeToggle.value;
 
   if (mode === "bars") drawBars();
-  else if (mode === "orb") drawOrb();
+  // else if (mode === "orb") drawOrb();
   else if (mode === "nebula") drawNebula();
   else if (mode === "particles") drawParticles();
 }
