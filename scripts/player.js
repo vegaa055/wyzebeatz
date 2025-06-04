@@ -52,6 +52,8 @@ let particles = [];
 // galaxy variables
 let galaxyParticles = [];
 let galaxyTime = 0;
+const maxFreqUsage = 0.7; // use only lower 70% of frequency bins
+const maxParticlesT = maxFreqUsage; // maximum t-value (normalized distance)
 
 function lerpColor(color1, color2, t) {
   return {
@@ -362,9 +364,9 @@ function drawGalaxy() {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const numArms = 4;
-  const particlesPerArm = 350;
+  const particlesPerArm = 150;
   const armAngleStep = (Math.PI * 2) / numArms;
-  const rotationSpeed = 0.0015;
+  const rotationSpeed = 0.0025; //originally 0.0015
 
   galaxyTime += 1;
 
@@ -378,12 +380,13 @@ function drawGalaxy() {
 
   for (let arm = 0; arm < numArms; arm++) {
     for (let i = 0; i < particlesPerArm; i++) {
-      const t = i / particlesPerArm;
+      const t = (i / particlesPerArm) * maxParticlesT;
       const angle =
         t * Math.PI * 8 + arm * armAngleStep + galaxyTime * rotationSpeed;
       const distance = t * Math.min(canvas.width, canvas.height) * 0.35;
 
-      const rippleIndex = Math.floor(t * bufferLength);
+      const rippleIndex = Math.floor(t * bufferLength * maxFreqUsage);
+
       const amp = dataArray[rippleIndex] / 256;
       const ripple = amp * 30;
 
