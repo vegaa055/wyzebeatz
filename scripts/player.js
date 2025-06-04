@@ -49,6 +49,10 @@ let driftTime = 0;
 // particles
 let particles = [];
 
+// galaxy variables
+let galaxyParticles = [];
+let galaxyTime = 0;
+
 function lerpColor(color1, color2, t) {
   return {
     r: Math.round(color1.r + (color2.r - color1.r) * t),
@@ -351,6 +355,89 @@ function drawParticles() {
   }
 }
 
+function drawGalaxy() {
+  analyser.getByteFrequencyData(dataArray);
+  drawBackground();
+
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const numArms = 4;
+  const particlesPerArm = 350;
+  const armAngleStep = (Math.PI * 2) / numArms;
+  const rotationSpeed = 0.0015;
+
+  galaxyTime += 1;
+
+  const lowRGB = hexToRgb(colorLow.value);
+  const midRGB = hexToRgb(colorMid.value);
+  const highRGB = hexToRgb(colorHigh.value);
+
+  ctx.save();
+
+  ctx.translate(centerX, centerY);
+
+  for (let arm = 0; arm < numArms; arm++) {
+    for (let i = 0; i < particlesPerArm; i++) {
+      const t = i / particlesPerArm;
+      const angle =
+        t * Math.PI * 8 + arm * armAngleStep + galaxyTime * rotationSpeed;
+      const distance = t * Math.min(canvas.width, canvas.height) * 0.35;
+
+      const rippleIndex = Math.floor(t * bufferLength);
+      const amp = dataArray[rippleIndex] / 256;
+      const ripple = amp * 30;
+
+      const x = Math.cos(angle) * (distance + ripple);
+      const y = Math.sin(angle) * (distance + ripple);
+
+      let rgb;
+      if (t < 0.33) rgb = lerpColor(lowRGB, midRGB, t / 0.33);
+      else if (t < 0.66) rgb = lerpColor(midRGB, highRGB, (t - 0.33) / 0.33);
+      else rgb = highRGB;
+
+      ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`;
+      ctx.beginPath();
+      ctx.arc(x, y, 2 + amp * 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  // Draw pulsing galactic core (based on bass frequency avg)
+  let bassTotal = 0;
+  const bassBins = Math.floor(bufferLength * 0.1); // lowest 10% = bass
+  for (let i = 0; i < bassBins; i++) {
+    bassTotal += dataArray[i];
+  }
+  const bassAvg = bassTotal / bassBins / 256;
+
+  // Core size pulses from base radius
+  const baseRadius = 25;
+  const pulseRadius = baseRadius + bassAvg * 50;
+
+  const lightRGB = lightenColor(lowRGB, 0.4); // adjust lightness % here
+
+  const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, pulseRadius);
+  gradient.addColorStop(
+    0,
+    `rgba(${lightRGB.r}, ${lightRGB.g}, ${lightRGB.b}, ${0.7 * bassAvg})`
+  );
+  gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+  ctx.beginPath();
+  ctx.fillStyle = gradient;
+  ctx.arc(0, 0, pulseRadius, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function lightenColor(rgb, amount = 0.3) {
+  return {
+    r: Math.min(255, rgb.r + (255 - rgb.r) * amount),
+    g: Math.min(255, rgb.g + (255 - rgb.g) * amount),
+    b: Math.min(255, rgb.b + (255 - rgb.b) * amount),
+  };
+}
+
 // Function to get color based on frequency index
 function getFrequencyColor(index, total) {
   const third = Math.floor(total / 3);
@@ -370,6 +457,7 @@ function draw() {
   // else if (mode === "orb") drawOrb();
   else if (mode === "nebula") drawNebula();
   else if (mode === "particles") drawParticles();
+  else if (mode === "galaxy") drawGalaxy();
 }
 
 function stopDrawing() {
