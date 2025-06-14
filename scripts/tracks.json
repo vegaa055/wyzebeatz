@@ -130,5 +130,11 @@
     "file": "audio/star_bound.mp3",
     "featured": false,
     "genre": "Synthwave"
+  },
+  {
+    "title": "Roll_With_Me_(With_2Pac_Hook)",
+    "file": "audio/roll_with_me_hook.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
   }
 ]
