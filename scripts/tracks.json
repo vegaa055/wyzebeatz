@@ -132,8 +132,26 @@
     "genre": "Synthwave"
   },
   {
-    "title": "Roll_With_Me_(With_2Pac_Hook)",
+    "title": "Roll_With_Me [With_2Pac_Hook]",
     "file": "audio/roll_with_me_hook.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Rise",
+    "file": "audio/rise.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "The_Vision",
+    "file": "audio/the_vision.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Sisyphus_Happy",
+    "file": "audio/sisyphus_happy.mp3",
     "featured": false,
     "genre": "Hip-Hop Instrumentals"
   }
