@@ -154,5 +154,17 @@
     "file": "audio/sisyphus_happy.mp3",
     "featured": false,
     "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "So_Petty",
+    "file": "audio/so_petty.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
+  },
+  {
+    "title": "Cruise_Control",
+    "file": "audio/cruise_control.mp3",
+    "featured": false,
+    "genre": "Hip-Hop Instrumentals"
   }
 ]
